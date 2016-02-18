@@ -2,30 +2,36 @@
 
 namespace Tetris
 {
-    class ShapeProxy : IShape
+    class ShapeProxy : IShape, IShapeFactory
     {
+        #region Fields
         private Random random;
         private IShape current;
         private IBoard board;
-
+ 
         public event JoinPileHandler JoinPile;
+        #endregion
 
+        #region Properties
         public int Length
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { throw new NotImplementedException(); }
         }
 
         public Block this[int i]
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get{ throw new NotImplementedException(); }
         }
+        #endregion
 
+        #region Constructor
+        public ShapeProxy()
+        {
+
+        }
+        #endregion
+
+        #region Methods
         protected void OnJoinPile()
         {
             throw new NotImplementedException();
@@ -60,5 +66,11 @@ namespace Tetris
         {
             throw new NotImplementedException();
         }
+
+        public void DeployNewShape()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
     }
 }

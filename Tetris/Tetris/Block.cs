@@ -5,10 +5,12 @@ namespace Tetris
 {
     public class Block
     {
+        #region Fields
         private IBoard board;
         private Color color;
+        #endregion
 
-        // Properties
+        #region Properties
         public Color Color
         {
             get { return color; }
@@ -19,7 +21,16 @@ namespace Tetris
             get { return Position; }
             set { Position = value; }
         }
+        #endregion
 
+        #region Constructor
+        public Block()
+        {
+
+        }
+        #endregion
+
+        #region Methods
         public bool TryMoveLeft()
         {
             throw new NotImplementedException();
@@ -60,5 +71,6 @@ namespace Tetris
         {
             throw new NotImplementedException();
         }
+        #endregion
     }
 }

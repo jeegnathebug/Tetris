@@ -7,5 +7,9 @@ namespace Tetris
 {
     class ShapeJ : Shape
     {
+        public ShapeJ()
+        {
+
+        }
     }
 }

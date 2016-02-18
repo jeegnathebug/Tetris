@@ -3,20 +3,15 @@
     interface IShape
     {
         // Properties
-        int Length
-        {
-            get;
-        }
+        int Length{get;}
 
         // Indexers
-        Block this[int i]
-        {
-            get;
-        }
+        Block this[int i]{get;}
 
         // Event handlers
         event JoinPileHandler JoinPile;
 
+        //Methods
         void MoveLeft();
 
         void MoveRight();

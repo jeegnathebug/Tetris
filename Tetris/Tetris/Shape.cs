@@ -5,29 +5,28 @@ namespace Tetris
 {
     abstract class Shape : IShape
     {
+        #region Fields
         private IBoard board;
         protected Block[] blocks;
         protected Point[][] rotationOffset;
         protected int currentRotation;
 
         public event JoinPileHandler JoinPile;
+        #endregion
 
+        #region Properties
         public int Length
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get{throw new NotImplementedException();}
         }
 
         public Block this[int i]
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get{throw new NotImplementedException();}
         }
+        #endregion
 
+        #region Methods
         protected void OnJoinPile()
         {
             throw new NotImplementedException();
@@ -62,5 +61,6 @@ namespace Tetris
         {
             throw new NotImplementedException();
         }
+        #endregion
     }
 }

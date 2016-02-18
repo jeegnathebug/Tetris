@@ -4,7 +4,7 @@ namespace Tetris
 {
     class Score
     {
-        // Properties
+        #region Properties
         public int Level
         {
             get { return Level; }
@@ -19,11 +19,13 @@ namespace Tetris
         {
             get { return Score; }
         }
+        #endregion
 
-        // Event handlers
+        #region Event Handlers/Methods
         private void incrementLinesCleared(int num)
         {
             throw new NotImplementedException();
         }
+        #endregion
     }
 }

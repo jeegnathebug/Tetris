@@ -7,5 +7,9 @@ namespace Tetris
 {
     class ShapeZ : Shape
     {
+        public ShapeZ()
+        {
+
+        }
     }
 }
