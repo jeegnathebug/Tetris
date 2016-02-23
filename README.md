@@ -21,10 +21,10 @@ shifts the piece one square. Rotation is counter-clockwise by ninety degrees. Th
 you will notice that the • dot also indicates the centre of the rotation. The player can also drop the piece to the floor / pile. 
 By dropping a piece, the piece simply free-falls down as far as it can.
 
-##Language
+###Language
 C#
 
-##Version 1.0
-(+) Library for business class
-(+) Business Classes structure
-(+) Unit Testing Project & Corresponding classes (in the works)
+###Version 1.0
+(+) Library for business class  
+(+) Business Classes structure (found in wiki)  
+(+) Unit Testing Project & Corresponding classes (in the works)  
