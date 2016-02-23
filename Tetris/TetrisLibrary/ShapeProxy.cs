@@ -1,52 +1,39 @@
 ﻿using System;
-using System.Drawing;
+using Microsoft.Xna.Framework;
 
-namespace Tetris
+namespace TetrisLibrary
 {
-    public class Block
+    class ShapeProxy : IShape, IShapeFactory
     {
         #region Fields
+        private Random random;
+        private IShape current;
         private IBoard board;
-        private Color color;
+ 
+        public event JoinPileHandler JoinPile;
         #endregion
 
         #region Properties
-        public Color Color
+        public int Length
         {
-            get { return color; }
+            get { throw new NotImplementedException(); }
         }
 
-        public Point Position
+        public Block this[int i]
         {
-            get { return Position; }
-            set { Position = value; }
+            get{ throw new NotImplementedException(); }
         }
         #endregion
 
         #region Constructor
-        public Block()
+        public ShapeProxy()
         {
 
         }
         #endregion
 
         #region Methods
-        public bool TryMoveLeft()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool TryMoveRight()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool TryMoveDown()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool TryRotate(Point offset)
+        protected void OnJoinPile()
         {
             throw new NotImplementedException();
         }
@@ -66,8 +53,22 @@ namespace Tetris
             throw new NotImplementedException();
         }
 
+        public void Drop()
+        {
+            throw new NotImplementedException();
+        }
 
-        public void Rotate(Point offset)
+        public void Rotate()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Reset()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeployNewShape()
         {
             throw new NotImplementedException();
         }

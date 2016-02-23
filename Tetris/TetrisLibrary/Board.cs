@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Drawing;
+using Microsoft.Xna.Framework;
 
-namespace Tetris
+namespace TetrisLibrary
 {
     class Board : IBoard
     {

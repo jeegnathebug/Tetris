@@ -1,4 +1,6 @@
-﻿namespace Tetris
+﻿using Microsoft.Xna.Framework;
+
+namespace TetrisLibrary
 {
     interface IShapeFactory
     {

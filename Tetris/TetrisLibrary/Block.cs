@@ -1,33 +1,53 @@
 ﻿using System;
 using System.Drawing;
+using Microsoft.Xna.Framework;
 
-namespace Tetris
+namespace TetrisLibrary
 {
-    abstract class Shape : IShape
+    public class Block
     {
         #region Fields
         private IBoard board;
-        protected Block[] blocks;
-        protected Point[][] rotationOffset;
-        protected int currentRotation;
-
-        public event JoinPileHandler JoinPile;
+        private Color color;
         #endregion
 
         #region Properties
-        public int Length
+        public Color Color
         {
-            get{throw new NotImplementedException();}
+            get { return color; }
         }
 
-        public Block this[int i]
+        public Point Position
         {
-            get{throw new NotImplementedException();}
+            get { return Position; }
+            set { Position = value; }
+        }
+        #endregion
+
+        #region Constructor
+        public Block()
+        {
+
         }
         #endregion
 
         #region Methods
-        protected void OnJoinPile()
+        public bool TryMoveLeft()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool TryMoveRight()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool TryMoveDown()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool TryRotate(Point offset)
         {
             throw new NotImplementedException();
         }
@@ -47,17 +67,8 @@ namespace Tetris
             throw new NotImplementedException();
         }
 
-        public void Drop()
-        {
-            throw new NotImplementedException();
-        }
 
-        public void Rotate()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Reset()
+        public void Rotate(Point offset)
         {
             throw new NotImplementedException();
         }

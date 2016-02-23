@@ -1,33 +1,29 @@
 ﻿using System;
+using System.Drawing;
+using Microsoft.Xna.Framework;
 
-namespace Tetris
+namespace TetrisLibrary
 {
-    class ShapeProxy : IShape, IShapeFactory
+    abstract class Shape : IShape
     {
         #region Fields
-        private Random random;
-        private IShape current;
         private IBoard board;
- 
+        protected Block[] blocks;
+        protected Point[][] rotationOffset;
+        protected int currentRotation;
+
         public event JoinPileHandler JoinPile;
         #endregion
 
         #region Properties
         public int Length
         {
-            get { throw new NotImplementedException(); }
+            get{throw new NotImplementedException();}
         }
 
         public Block this[int i]
         {
-            get{ throw new NotImplementedException(); }
-        }
-        #endregion
-
-        #region Constructor
-        public ShapeProxy()
-        {
-
+            get{throw new NotImplementedException();}
         }
         #endregion
 
@@ -63,11 +59,6 @@ namespace Tetris
         }
 
         public void Reset()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DeployNewShape()
         {
             throw new NotImplementedException();
         }

@@ -1,6 +1,7 @@
 ﻿using System;
+using Microsoft.Xna.Framework;
 
-namespace Tetris
+namespace TetrisLibrary
 {
     class Score
     {
