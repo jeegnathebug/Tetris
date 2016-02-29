@@ -1,5 +1,4 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using Microsoft.Xna.Framework;
 
 namespace TetrisLibrary
@@ -7,11 +6,14 @@ namespace TetrisLibrary
     public class Block
     {
         #region Fields
+
         private IBoard board;
         private Color color;
+
         #endregion
 
         #region Properties
+
         public Color Color
         {
             get { return color; }
@@ -22,56 +24,87 @@ namespace TetrisLibrary
             get { return Position; }
             set { Position = value; }
         }
+
         #endregion
 
         #region Constructor
-        public Block()
-        {
 
+        public Block(IBoard board, Color color)
+        {
+            this.board = board;
+            this.color = color;
         }
+
         #endregion
 
         #region Methods
+
+        // TODO all Try methods
+        // If there are two blocks in a row (of the same shape),
+        // when it tries to move any direction, it'll see the block next to it,
+        // and say that it can't move, even though that block will move with it.
+        // Use the board's colors for Try methods
+
         public bool TryMoveLeft()
         {
-            throw new NotImplementedException();
+            bool canMove = false;
+
+            return canMove;
         }
 
         public bool TryMoveRight()
         {
-            throw new NotImplementedException();
+            bool canMove = false;
+
+            return canMove;
         }
 
         public bool TryMoveDown()
         {
-            throw new NotImplementedException();
+            bool canMove = false;
+
+            return canMove;
         }
 
         public bool TryRotate(Point offset)
         {
-            throw new NotImplementedException();
+            bool canRotate = false;
+
+            return canRotate;
         }
 
         public void MoveLeft()
         {
-            throw new NotImplementedException();
+            if (TryMoveLeft())
+            {
+                Position.Offset(-1, 0);
+            }
         }
 
         public void MoveRight()
         {
-            throw new NotImplementedException();
+            if (TryMoveRight())
+            {
+                Position.Offset(1, 0);
+            }
         }
 
         public void MoveDown()
         {
-            throw new NotImplementedException();
+            if (TryMoveDown())
+            {
+                Position.Offset(0, 1);
+            }
         }
-
 
         public void Rotate(Point offset)
         {
-            throw new NotImplementedException();
+            if (TryRotate(offset))
+            {
+                Position.Offset(offset.X, offset.Y);
+            }
         }
+
         #endregion
     }
 }

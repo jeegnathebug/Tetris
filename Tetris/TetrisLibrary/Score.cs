@@ -16,9 +16,9 @@ namespace TetrisLibrary
             get { return Lines; }
         }
 
-        public int Score
+        public int score
         {
-            get { return Score; }
+            get { return score; }
         }
         #endregion
 

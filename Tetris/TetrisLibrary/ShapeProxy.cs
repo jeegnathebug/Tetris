@@ -6,72 +6,96 @@ namespace TetrisLibrary
     class ShapeProxy : IShape, IShapeFactory
     {
         #region Fields
-        private Random random;
+
+        private static Random random;
         private IShape current;
         private IBoard board;
- 
+
         public event JoinPileHandler JoinPile;
+
         #endregion
 
         #region Properties
+
         public int Length
         {
-            get { throw new NotImplementedException(); }
+            get { return Length; }
         }
 
         public Block this[int i]
         {
-            get{ throw new NotImplementedException(); }
+            get { return current[i]; }
         }
+
         #endregion
 
         #region Constructor
-        public ShapeProxy()
-        {
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TetrisLibrary.ShapeProxy"/> class.
+        /// </summary>
+        /// <param name="current">The current shape.</param>
+        /// <param name="board">The board being used.</param>
+        public ShapeProxy(IShape current, IBoard board)
+        {
+            this.current = current;
+            this.board = board;
+
+            // Event handler
+            // TODO What method do I need to give JoinPileHandler in ShapeProxy?
+            current.JoinPile += new JoinPileHandler();
         }
+
         #endregion
 
         #region Methods
+
         protected void OnJoinPile()
         {
-            throw new NotImplementedException();
+            if (JoinPile != null)
+            {
+                JoinPile(this);
+            }
         }
 
         public void MoveLeft()
         {
-            throw new NotImplementedException();
+            current.MoveLeft();
         }
 
         public void MoveRight()
         {
-            throw new NotImplementedException();
+            current.MoveRight();
         }
 
         public void MoveDown()
         {
-            throw new NotImplementedException();
+            current.MoveDown();
         }
 
         public void Drop()
         {
-            throw new NotImplementedException();
+            current.Drop();
         }
 
         public void Rotate()
         {
-            throw new NotImplementedException();
+            current.Rotate();
         }
 
         public void Reset()
         {
+            current.Reset();
+        }
+
+        // TODO DeployNewShape() Not yet implemented
+        public void DeployNewShape()
+        {
+            int r = random.Next(7);
+
             throw new NotImplementedException();
         }
 
-        public void DeployNewShape()
-        {
-            throw new NotImplementedException();
-        }
         #endregion
     }
 }
