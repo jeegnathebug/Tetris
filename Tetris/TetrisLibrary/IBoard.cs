@@ -1,7 +1,6 @@
 ﻿using System.Drawing;
 using Microsoft.Xna.Framework;
 
-
 namespace TetrisLibrary
 {
     public delegate void LinesClearedHandler(int num);

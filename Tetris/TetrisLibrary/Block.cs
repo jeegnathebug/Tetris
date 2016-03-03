@@ -1,5 +1,4 @@
 ﻿using System.Drawing;
-using Microsoft.Xna.Framework;
 
 namespace TetrisLibrary
 {
@@ -29,6 +28,11 @@ namespace TetrisLibrary
 
         #region Constructor
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Block"/> class.
+        /// </summary>
+        /// <param name="board">The board</param>
+        /// <param name="color">The color of the block</param>
         public Block(IBoard board, Color color)
         {
             this.board = board;
@@ -39,15 +43,14 @@ namespace TetrisLibrary
 
         #region Methods
 
-        // TODO all Try methods
-        // If there are two blocks in a row (of the same shape),
-        // when it tries to move any direction, it'll see the block next to it,
-        // and say that it can't move, even though that block will move with it.
-        // Use the board's colors for Try methods
-
         public bool TryMoveLeft()
         {
             bool canMove = false;
+
+            if (board[Position.X - 1, Position.Y].IsEmpty)
+            {
+                canMove = true;
+            }
 
             return canMove;
         }
@@ -56,6 +59,11 @@ namespace TetrisLibrary
         {
             bool canMove = false;
 
+            if (board[Position.X + 1, Position.Y].IsEmpty)
+            {
+                canMove = true;
+            }
+
             return canMove;
         }
 
@@ -63,12 +71,22 @@ namespace TetrisLibrary
         {
             bool canMove = false;
 
+            if (board[Position.X, Position.Y + 1].IsEmpty)
+            {
+                canMove = true;
+            }
+
             return canMove;
         }
 
         public bool TryRotate(Point offset)
         {
             bool canRotate = false;
+
+            if (board[Position.X + offset.X, Position.Y + offset.Y].IsEmpty)
+            {
+                canRotate = true;
+            }
 
             return canRotate;
         }

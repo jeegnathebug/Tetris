@@ -1,5 +1,4 @@
 ﻿using System.Drawing;
-using Microsoft.Xna.Framework;
 
 namespace TetrisLibrary
 {
@@ -8,8 +7,11 @@ namespace TetrisLibrary
         #region Fields
 
         private IBoard board;
+        private int length;
+
         protected Block[] blocks;
         protected Point[][] rotationOffset;
+
         protected int currentRotation;
 
         public event JoinPileHandler JoinPile;
@@ -17,11 +19,10 @@ namespace TetrisLibrary
         #endregion
 
         #region Properties
-        
-        // TODO What is Length of Shape?
+
         public int Length
         {
-            get { return Length; }
+            get { return length; }
         }
 
         public Block this[int i]
@@ -34,15 +35,42 @@ namespace TetrisLibrary
         #region Constructor
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TetrisLibrary.Shape"/> class.
+        /// Initializes a new instance of the <see cref="Shape"/> class.
         /// </summary>
         public Shape()
         {
+            length = 4;
         }
 
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// Drop this shape to the top of the pile.
+        /// </summary>
+        public void Drop()
+        {
+            bool canMove = true;
+
+            while (canMove)
+            {
+                // Check if each block can move down
+                for (int i = 0; i < blocks.Length; i++)
+                {
+                    canMove &= blocks[i].TryMoveDown();
+                }
+
+                // If they can, move down
+                if (canMove)
+                {
+                    MoveDown();
+                }
+            }
+
+            // Raise event
+            OnJoinPile();
+        }
 
         /// <summary>
         /// Raises the join pile event.
@@ -58,54 +86,124 @@ namespace TetrisLibrary
         /// <summary>
         /// Moves the shape left.
         /// </summary>
-        public abstract void MoveLeft();
+        public void MoveLeft()
+        {
+            bool canMove = true;
+
+            // Checks whether or not each block can move
+            foreach (Block b in blocks)
+            {
+                canMove &= b.TryMoveLeft();
+            }
+
+            // Moves each block
+            if (canMove)
+            {
+                foreach (Block b in blocks)
+                {
+                    b.MoveLeft();
+                }
+            }
+        }
 
         /// <summary>
         /// Moves the shape right.
         /// </summary>
-        public abstract void MoveRight();
+        public void MoveRight()
+        {
+            bool canMove = true;
+
+            // Checks whether or not each block can move
+            foreach (Block b in blocks)
+            {
+                canMove &= b.TryMoveRight();
+            }
+
+            // Moves each block
+            if (canMove)
+            {
+                foreach (Block b in blocks)
+                {
+                    b.MoveRight();
+                }
+            }
+        }
 
         /// <summary>
         /// Moves the shape down.
         /// </summary>
-        public abstract void MoveDown();
-
-        // TODO Drop() Not completed
-        /// <summary>
-        /// Drop this shape to the top of the pile.
-        /// </summary>
-        public void Drop()
+        public void MoveDown()
         {
-            // MoveDown until you cannot MoveDown any further
+            bool canMove = true;
 
-            //while() { // while you can still MoveDown
-                bool canMove = false;
-                for (int i = 0; i < blocks.Length; i++)
+            // Checks whether or not each block can move
+            foreach (Block b in blocks)
+            {
+                canMove &= b.TryMoveDown();
+            }
+
+            // Moves each block
+            if (canMove)
+            {
+                foreach (Block b in blocks)
                 {
-                    canMove &= blocks[i].TryMoveDown();
+                    b.MoveDown();
                 }
-
-                if (canMove)
-                {
-                    MoveDown();
-                }
-            //}
-
-            // Fire event
-            OnJoinPile();
+            }
         }
 
         /// <summary>
         /// Rotates this shape 90 degrees counterclockwise.
         /// </summary>
-        public abstract void Rotate();
+        public void Rotate()
+        {
+            // Do not rotate. Only used for ShapeO
+            if (currentRotation == -1)
+            {
+                return;
+            }
 
-        // TODO Reset() on all shapes not yet implemented. And what is it supposed to do?
+            bool canRotate = true;
+
+            // Checks whether or not each block can move
+            for (int i = 0; i < blocks.Length; i++)
+            {
+                blocks[i].TryRotate(rotationOffset[i][currentRotation + 1]);
+            }
+
+            if (canRotate)
+            {
+                // Update current rotation
+                if (currentRotation == rotationOffset[0].Length - 1)
+                {
+                    currentRotation = 0;
+                }
+                else
+                {
+                    currentRotation++;
+                }
+
+                // Rotate each block
+                for (int i = 0; i < blocks.Length; i++)
+                {
+                    blocks[i].Rotate(rotationOffset[i][currentRotation]);
+                }
+            }
+        }
+
         /// <summary>
         /// Resets this instance.
         /// </summary>
-        public abstract void Reset();
+        public void Reset()
+        {
+            // Reset rotation
+            currentRotation = 0;
 
+            // Reset block locations
+            setBlockPositions();
+        }
+
+        protected abstract void setBlockPositions();
         #endregion
     }
 }

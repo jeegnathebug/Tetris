@@ -1,6 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-
-namespace TetrisLibrary
+﻿namespace TetrisLibrary
 {
     public delegate void JoinPileHandler(IShape shape);
 

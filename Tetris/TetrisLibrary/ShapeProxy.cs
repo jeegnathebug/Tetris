@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.Xna.Framework;
 
 namespace TetrisLibrary
 {
@@ -32,7 +31,7 @@ namespace TetrisLibrary
         #region Constructor
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TetrisLibrary.ShapeProxy"/> class.
+        /// Initializes a new instance of the <see cref="ShapeProxy"/> class.
         /// </summary>
         /// <param name="current">The current shape.</param>
         /// <param name="board">The board being used.</param>
@@ -43,7 +42,7 @@ namespace TetrisLibrary
 
             // Event handler
             // TODO What method do I need to give JoinPileHandler in ShapeProxy?
-            current.JoinPile += new JoinPileHandler();
+            current.JoinPile += new JoinPileHandler(board.addToPile); // But it's private :c
         }
 
         #endregion
