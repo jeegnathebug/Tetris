@@ -18,6 +18,11 @@ namespace TetrisLibrary
         event LinesClearedHandler LinesCleared;
         event GameOverHandler GameOver;
 
+		/// <summary>
+		/// Gets the length of the given rank
+		/// </summary>
+		/// <returns>The length of the rank.</returns>
+		/// <param name="rank">The rank whose Length is to be determined.</param>
         int GetLength(int rank);
     }
 }

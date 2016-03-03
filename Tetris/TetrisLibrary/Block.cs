@@ -31,8 +31,8 @@ namespace TetrisLibrary
         /// <summary>
         /// Initializes a new instance of the <see cref="Block"/> class.
         /// </summary>
-        /// <param name="board">The board</param>
-        /// <param name="color">The color of the block</param>
+        /// <param name="board">The board.</param>
+        /// <param name="color">The color of the block.</param>
         public Block(IBoard board, Color color)
         {
             this.board = board;
@@ -43,6 +43,10 @@ namespace TetrisLibrary
 
         #region Methods
 
+		/// <summary>
+		/// Tries to move the <see cref="Block"/> left.
+		/// </summary>
+		/// <returns><c>true</c>, if the <see cref="Block"/> can move left, <c>false</c> otherwise.</returns>
         public bool TryMoveLeft()
         {
             bool canMove = false;
@@ -55,6 +59,10 @@ namespace TetrisLibrary
             return canMove;
         }
 
+		/// <summary>
+		/// Tries to move the <see cref="Block"/> right.
+		/// </summary>
+		/// <returns><c>true</c>, if the <see cref="Block"/> can move right, <c>false</c> otherwise.</returns>
         public bool TryMoveRight()
         {
             bool canMove = false;
@@ -67,6 +75,10 @@ namespace TetrisLibrary
             return canMove;
         }
 
+		/// <summary>
+		/// Tries to move the <see cref="Block"/> down.
+		/// </summary>
+		/// <returns><c>true</c>, if the <see cref="Block"/> can move down, <c>false</c> otherwise.</returns>
         public bool TryMoveDown()
         {
             bool canMove = false;
@@ -79,6 +91,11 @@ namespace TetrisLibrary
             return canMove;
         }
 
+		/// <summary>
+		/// Tries to rotate the <see cref="Block"./>
+		/// </summary>
+		/// <returns><c>true</c>, if the <see cref="Block"/> can be rotated, <c>false</c> otherwise.</returns>
+		/// <param name="offset">The offset to rotate the <see cref="Block"/>.</param>
         public bool TryRotate(Point offset)
         {
             bool canRotate = false;
@@ -91,6 +108,9 @@ namespace TetrisLibrary
             return canRotate;
         }
 
+		/// <summary>
+		/// Moves the <see cref="Block"/> left if it can be moved.
+		/// </summary>
         public void MoveLeft()
         {
             if (TryMoveLeft())
@@ -99,6 +119,9 @@ namespace TetrisLibrary
             }
         }
 
+		/// <summary>
+		/// Moves the <see cref="Block"/> right if it can be moved.
+		/// </summary>
         public void MoveRight()
         {
             if (TryMoveRight())
@@ -107,6 +130,9 @@ namespace TetrisLibrary
             }
         }
 
+		/// <summary>
+		/// Moves the <see cref="Block"/> down if it can be moved.
+		/// </summary>
         public void MoveDown()
         {
             if (TryMoveDown())
@@ -115,6 +141,10 @@ namespace TetrisLibrary
             }
         }
 
+		/// <summary>
+		/// Rotates the <see cref="Block"/> by the given offset if it can be rotated.
+		/// </summary>
+		/// <param name="offset">The offset to rotate the <see cref="Block"/>.</param>
         public void Rotate(Point offset)
         {
             if (TryRotate(offset))

@@ -47,7 +47,7 @@ namespace TetrisLibrary
         #region Methods
 
         /// <summary>
-        /// Drop this shape to the top of the pile.
+		/// Drop this <see cref="Shape"/> to the top of the pile.
         /// </summary>
         public void Drop()
         {
@@ -84,7 +84,7 @@ namespace TetrisLibrary
         }
 
         /// <summary>
-        /// Moves the shape left.
+		/// Moves this <see cref="Shape"/> left.
         /// </summary>
         public void MoveLeft()
         {
@@ -107,7 +107,7 @@ namespace TetrisLibrary
         }
 
         /// <summary>
-        /// Moves the shape right.
+		/// Moves this <see cref="Shape"/> right.
         /// </summary>
         public void MoveRight()
         {
@@ -130,7 +130,7 @@ namespace TetrisLibrary
         }
 
         /// <summary>
-        /// Moves the shape down.
+		/// Moves this <see cref="Shape"/> down.
         /// </summary>
         public void MoveDown()
         {
@@ -153,42 +153,34 @@ namespace TetrisLibrary
         }
 
         /// <summary>
-        /// Rotates this shape 90 degrees counterclockwise.
+		/// Rotates this <see cref="Shape"/> 90 degrees counterclockwise.
         /// </summary>
         public void Rotate()
         {
-            // Do not rotate. Only used for ShapeO
-            if (currentRotation == -1)
-            {
-                return;
-            }
+            // Rotate only if currentRotation is not -1. Only used for ShapeO
+			if (currentRotation != -1) {
 
-            bool canRotate = true;
+				bool canRotate = true;
 
-            // Checks whether or not each block can move
-            for (int i = 0; i < blocks.Length; i++)
-            {
-                blocks[i].TryRotate(rotationOffset[i][currentRotation + 1]);
-            }
+				// Checks whether or not each block can move
+				for (int i = 0; i < blocks.Length; i++) {
+					blocks [i].TryRotate (rotationOffset [i] [currentRotation + 1]);
+				}
 
-            if (canRotate)
-            {
-                // Update current rotation
-                if (currentRotation == rotationOffset[0].Length - 1)
-                {
-                    currentRotation = 0;
-                }
-                else
-                {
-                    currentRotation++;
-                }
+				if (canRotate) {
+					// Update current rotation
+					if (currentRotation == rotationOffset [0].Length - 1) {
+						currentRotation = 0;
+					} else {
+						currentRotation++;
+					}
 
-                // Rotate each block
-                for (int i = 0; i < blocks.Length; i++)
-                {
-                    blocks[i].Rotate(rotationOffset[i][currentRotation]);
-                }
-            }
+					// Rotate each block
+					for (int i = 0; i < blocks.Length; i++) {
+						blocks [i].Rotate (rotationOffset [i] [currentRotation]);
+					}
+				}
+			}
         }
 
         /// <summary>

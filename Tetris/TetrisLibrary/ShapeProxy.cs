@@ -34,7 +34,7 @@ namespace TetrisLibrary
         /// Initializes a new instance of the <see cref="ShapeProxy"/> class.
         /// </summary>
         /// <param name="current">The current shape.</param>
-        /// <param name="board">The board being used.</param>
+        /// <param name="board">The board.</param>
         public ShapeProxy(IShape current, IBoard board)
         {
             this.current = current;
@@ -49,6 +49,9 @@ namespace TetrisLibrary
 
         #region Methods
 
+		/// <summary>
+		/// Raises the join pile event.
+		/// </summary>
         protected void OnJoinPile()
         {
             if (JoinPile != null)
@@ -57,37 +60,58 @@ namespace TetrisLibrary
             }
         }
 
+		/// <summary>
+		/// Moves the <see cref="Shape"/> left.
+		/// </summary>
         public void MoveLeft()
         {
             current.MoveLeft();
         }
 
+		/// <summary>
+		/// Moves the <see cref="Shape"/> right.
+		/// </summary>
         public void MoveRight()
         {
             current.MoveRight();
         }
 
+		/// <summary>
+		/// Moves the <see cref="Shape"/> down.
+		/// </summary>
         public void MoveDown()
         {
             current.MoveDown();
         }
 
+		/// <summary>
+		/// Drops the <see cref="Shape"/> to the top of the pile.
+		/// </summary>
         public void Drop()
         {
             current.Drop();
         }
 
+		/// <summary>
+		/// Rotates this <see cref="Shape"/> 90 degrees counterclockwise.
+		/// </summary>
         public void Rotate()
         {
             current.Rotate();
         }
 
+		/// <summary>
+		/// Resets this instance.
+		/// </summary>
         public void Reset()
         {
             current.Reset();
         }
 
         // TODO DeployNewShape() Not yet implemented
+		/// <summary>
+		/// Deploys a new shape.
+		/// </summary>
         public void DeployNewShape()
         {
             int r = random.Next(7);

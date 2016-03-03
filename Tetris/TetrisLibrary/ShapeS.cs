@@ -39,6 +39,9 @@ namespace TetrisLibrary
             currentRotation = 0;
         }
 
+		/// <summary>
+		/// Sets the blocks' positions.
+		/// </summary>
         protected override void setBlockPositions()
         {
             blocks[0].Position = new Point(-1, -1);

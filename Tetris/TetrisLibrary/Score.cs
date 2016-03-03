@@ -15,8 +15,31 @@ namespace TetrisLibrary
 
         #endregion
 
+		#region Properties
+
+		public int Level
+		{
+			get { return level; }
+		}
+
+		public int Lines
+		{
+			get { return lines; }
+		}
+
+		public int score
+		{
+			get { return _score; }
+		}
+
+		#endregion
+
         #region Constructor
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Score"/> class.
+		/// </summary>
+		/// <param name="board">Board.</param>
         public Score(IBoard board)
         {
             this.board = board;
@@ -31,27 +54,12 @@ namespace TetrisLibrary
 
         #endregion
 
-        #region Properties
-
-        public int Level
-        {
-            get { return level; }
-        }
-
-        public int Lines
-        {
-            get { return lines; }
-        }
-
-        public int score
-        {
-            get { return _score; }
-        }
-
-        #endregion
-
         #region Event Handlers/Methods
 
+		/// <summary>
+		/// Increments the lines cleared.
+		/// </summary>
+		/// <param name="num">The number by which to increment the lines.</param>
         private void incrementLinesCleared(int num)
         {
             if (num >= 0)
