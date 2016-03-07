@@ -3,9 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tetris", "Tetris\Tetris.csproj", "{EE09C225-0777-495F-BCC1-FB4CEE5C2B04}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TetrisTests", "TetrisTests\TetrisTests.csproj", "{37993742-381C-45C3-8010-1F7124225E23}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4CBEE0B7-01D6-4D62-B922-8D89E2697713} = {4CBEE0B7-01D6-4D62-B922-8D89E2697713}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TetrisLibrary", "TetrisLibrary\TetrisLibrary.csproj", "{4CBEE0B7-01D6-4D62-B922-8D89E2697713}"
 EndProject
@@ -15,10 +16,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EE09C225-0777-495F-BCC1-FB4CEE5C2B04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EE09C225-0777-495F-BCC1-FB4CEE5C2B04}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EE09C225-0777-495F-BCC1-FB4CEE5C2B04}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EE09C225-0777-495F-BCC1-FB4CEE5C2B04}.Release|Any CPU.Build.0 = Release|Any CPU
 		{37993742-381C-45C3-8010-1F7124225E23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{37993742-381C-45C3-8010-1F7124225E23}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37993742-381C-45C3-8010-1F7124225E23}.Release|Any CPU.ActiveCfg = Release|Any CPU

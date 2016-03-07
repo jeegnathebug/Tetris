@@ -3,7 +3,7 @@
     interface IShapeFactory
     {
         /// <summary>
-        /// Deploys a new <see cref="TetrisLibrary.Shape"/> instance.
+        /// Deploys a new <see cref="Shape"/> instance.
         /// </summary>
         void DeployNewShape();
     }

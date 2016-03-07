@@ -1,6 +1,6 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Drawing;
+using TetrisLibrary;
 
 namespace TetrisTests
 {
@@ -8,10 +8,11 @@ namespace TetrisTests
     public class BlockTests
     {
         [TestMethod]
-        private void TryMoveLeft()
+        public void TryMoveLeft()
         {
             //arrange
-            TetrisLibrary.Block block = new TetrisLibrary.Block();
+            Board board = new Board();
+            Block block = new Block(board, Color.White);
             block.Position = new Point(2, 1);
             bool x;
 
@@ -21,11 +22,13 @@ namespace TetrisTests
             //assert
             Assert.AreEqual(true, x);
         }
+
         [TestMethod]
-        private void TryMoveRight()
+        public void TryMoveRight()
         {
             //arrange
-            TetrisLibrary.Block block = new TetrisLibrary.Block();
+            Board board = new Board();
+            Block block = new Block(board, Color.White);
             block.Position = new Point(1, 1);
             bool x;
 
@@ -35,11 +38,13 @@ namespace TetrisTests
             //assert
             Assert.AreEqual(true, x);
         }
+
         [TestMethod]
-        private void TryMoveDown()
+        public void TryMoveDown()
         {
             //arrange
-            TetrisLibrary.Block block = new TetrisLibrary.Block();
+            Board board = new Board();
+            Block block = new Block(board, Color.White);
             block.Position = new Point(4, 4);
             bool x;
 
@@ -49,13 +54,15 @@ namespace TetrisTests
             //assert
             Assert.AreEqual(true, x);
         }
+
         [TestMethod]
-        private void TryRotate()
+        public void TryRotate()
         {
             //arrange
-            TetrisLibrary.Block block = new TetrisLibrary.Block();
+            Board board = new Board();
+            Block block = new Block(board, Color.White);
             block.Position = new Point(8, 6);
-            Point offset = new Point(1,2);
+            Point offset = new Point(1, 2); // Go to 9,8
             bool x;
 
             //act
@@ -64,11 +71,78 @@ namespace TetrisTests
             //assert
             Assert.AreEqual(true, x);
         }
+
         [TestMethod]
-        private void MoveLeft()
+        public void TryMoveLeftFalse()
         {
             //arrange
-            TetrisLibrary.Block block = new TetrisLibrary.Block();
+            Board board = new Board();
+            Block block = new Block(board, Color.White);
+            block.Position = new Point(0, 1);
+            bool x;
+
+            //act
+            x = block.TryMoveLeft();
+
+            //assert
+            Assert.AreEqual(false, x);
+        }
+
+        [TestMethod]
+        public void TryMoveRightFalse()
+        {
+            //arrange
+            Board board = new Board();
+            Block block = new Block(board, Color.White);
+            block.Position = new Point(9, 1);
+            bool x;
+
+            //act
+            x = block.TryMoveRight();
+
+            //assert
+            Assert.AreEqual(false, x);
+        }
+
+        [TestMethod]
+        public void TryMoveDownFalse()
+        {
+            //arrange
+            Board board = new Board();
+            Block block = new Block(board, Color.White);
+            block.Position = new Point(4, 19);
+            bool x;
+
+            //act
+            x = block.TryMoveDown();
+
+            //assert
+            Assert.AreEqual(false, x);
+        }
+
+        [TestMethod]
+        public void TryRotateFalse()
+        {
+            //arrange
+            Board board = new Board();
+            Block block = new Block(board, Color.White);
+            block.Position = new Point(8, 6);
+            Point offset = new Point(2, 2); // Go to 10,8
+            bool x;
+
+            //act
+            x = block.TryRotate(offset);
+
+            //assert
+            Assert.AreEqual(false, x);
+        }
+
+        [TestMethod]
+        public void MoveLeft()
+        {
+            //arrange
+            Board board = new Board();
+            Block block = new Block(board, Color.White);
             block.Position = new Point(2, 1);
 
             //act
@@ -78,11 +152,13 @@ namespace TetrisTests
             Assert.AreEqual(1, block.Position.X);
             Assert.AreEqual(1, block.Position.Y);
         }
+
         [TestMethod]
-        private void MoveRight()
+        public void MoveRight()
         {
             //arrange
-            TetrisLibrary.Block block = new TetrisLibrary.Block();
+            Board board = new Board();
+            Block block = new Block(board, Color.White);
             block.Position = new Point(2, 1);
 
             //act
@@ -92,11 +168,13 @@ namespace TetrisTests
             Assert.AreEqual(3, block.Position.X);
             Assert.AreEqual(1, block.Position.Y);
         }
+
         [TestMethod]
-        private void MoveDown()
+        public void MoveDown()
         {
             //arrange
-            TetrisLibrary.Block block = new TetrisLibrary.Block();
+            Board board = new Board();
+            Block block = new Block(board, Color.White);
             block.Position = new Point(1, 6);
 
             //act
@@ -106,11 +184,13 @@ namespace TetrisTests
             Assert.AreEqual(1, block.Position.X);
             Assert.AreEqual(6, block.Position.Y);
         }
+
         [TestMethod]
-        private void Rotate()
+        public void Rotate()
         {
             //arrange
-            TetrisLibrary.Block block = new TetrisLibrary.Block();
+            Board board = new Board();
+            Block block = new Block(board, Color.White);
             block.Position = new Point(8, 6);
             Point offset = new Point(1, 2);
 
@@ -118,8 +198,8 @@ namespace TetrisTests
             block.Rotate(offset);
 
             //assert
-            Assert.AreEqual(8, block.Position.X);
-            Assert.AreEqual(6, block.Position.Y);
+            Assert.AreEqual(9, block.Position.X);
+            Assert.AreEqual(8, block.Position.Y);
         }
     }
 }

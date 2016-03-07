@@ -1,10 +1,8 @@
-﻿using System;
-using System.Drawing;
-using Microsoft.Xna.Framework;
+﻿using System.Drawing;
 
 namespace TetrisLibrary
 {
-    class Board : IBoard
+    public class Board : IBoard
     {
         #region Fields
 
@@ -33,39 +31,43 @@ namespace TetrisLibrary
 
         #region Constructor
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="TetrisLibrary.Board"/> class.
-		/// </summary>
-		/// <param name="shape">The current <see cref="Shape"/> being deployed.</param>
-		/// <param name="shapeFactory">The <see cref="ShapeFactory"/>.</param>
-        public Board(IShape shape, IShapeFactory shapeFactory)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Board"/> class.
+        /// </summary>
+        /// <param name="shapeFactory">The <see cref="ShapeFactory"/>.</param>
+        public Board()
         {
             board = new Color[10, 20];
-            this.shape = shape;
-            this.shapeFactory = shapeFactory;
+
+            // TODO pretty sure this is wrong
+            ShapeProxy proxy = new ShapeProxy(this);
+            shapeFactory = proxy;
+            shape = proxy;
 
             // Event handler
             shape.JoinPile += new JoinPileHandler(addToPile);
+
+            shapeFactory.DeployNewShape();
         }
 
         #endregion
 
         #region Methods
 
-		/// <summary>
-		/// Gets the length of the given rank
-		/// </summary>
-		/// <returns>The length of the rank.</returns>
-		/// <param name="rank">The rank whose Length is to be determined.</param>
+        /// <summary>
+        /// Gets the length of the given rank
+        /// </summary>
+        /// <returns>The length of the rank.</returns>
+        /// <param name="rank">The rank whose Length is to be determined.</param>
         public int GetLength(int rank)
         {
             return board.GetLength(rank);
         }
 
-		/// <summary>
-		/// Raises the lines cleared event.
-		/// </summary>
-		/// <param name="lines">Number of lines cleared.</param>
+        /// <summary>
+        /// Raises the lines cleared event.
+        /// </summary>
+        /// <param name="lines">Number of lines cleared.</param>
         protected void OnLinesCleared(int lines)
         {
             if (LinesCleared != null)
@@ -74,9 +76,9 @@ namespace TetrisLibrary
             }
         }
 
-		/// <summary>
-		/// Raises the game over event.
-		/// </summary>
+        /// <summary>
+        /// Raises the game over event.
+        /// </summary>
         protected void OnGameOver()
         {
             if (GameOver != null)
@@ -85,13 +87,50 @@ namespace TetrisLibrary
             }
         }
 
-		/// <summary>
-		/// Adds the <see cref="Shape"/> to the pile.
-		/// </summary>
-		/// <param name="shape">The shape to add to the pile.</param>
+        /// <summary>
+        /// Adds the <see cref="Shape"/> to the pile.
+        /// </summary>
+        /// <param name="shape">The shape to be added to the pile.</param>
         private void addToPile(IShape shape)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < shape.Length; i++)
+            {
+                board[(shape[i].Position.X + 5), (-shape[i].Position.Y)] = shape[i].Color;
+            }
+
+            // Clear any line that has been completed
+            clearLines();
+
+            // Create new shape for ShapeProxy
+            shapeFactory.DeployNewShape();
+        }
+
+        private void clearLines()
+        {
+            int num = 0;
+
+            // Check lines
+            bool cleared = true;
+            for (int i = 0; i < board.GetLength(1); i++)
+            {
+                for (int j = 0; j < GetLength(j); j++)
+                {
+                    cleared &= !board[i, j].IsEmpty;
+                }
+
+                if (cleared)
+                {
+                    num++;
+                }
+
+                cleared = true;
+            }
+
+            // If any lines were cleared, fire event
+            if (num != 0)
+            {
+                OnLinesCleared(num);
+            }
         }
 
         #endregion

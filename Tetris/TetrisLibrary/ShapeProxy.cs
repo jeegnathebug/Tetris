@@ -2,12 +2,12 @@
 
 namespace TetrisLibrary
 {
-    class ShapeProxy : IShape, IShapeFactory
+    public class ShapeProxy : IShape, IShapeFactory
     {
         #region Fields
 
         private static Random random;
-        private IShape current;
+        private IShape current; // The shape I'm pretending to be
         private IBoard board;
 
         public event JoinPileHandler JoinPile;
@@ -31,92 +31,116 @@ namespace TetrisLibrary
         #region Constructor
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ShapeProxy"/> class.
+        /// Initializes a new instance of the <see cref="ShapeProxy"/> class. This class is a stand-in for an instance of the <see cref="IShape"/> interface
         /// </summary>
-        /// <param name="current">The current shape.</param>
         /// <param name="board">The board.</param>
-        public ShapeProxy(IShape current, IBoard board)
+        public ShapeProxy(IBoard board)
         {
-            this.current = current;
+            random = new Random();
             this.board = board;
-
-            // Event handler
-            // TODO What method do I need to give JoinPileHandler in ShapeProxy?
-            current.JoinPile += new JoinPileHandler(board.addToPile); // But it's private :c
         }
 
         #endregion
 
         #region Methods
 
-		/// <summary>
-		/// Raises the join pile event.
-		/// </summary>
-        protected void OnJoinPile()
+        /// <summary>
+        /// Raises the join pile event.
+        /// </summary>
+        /// <param name="shape">The shape to be used as the parameter for the event</param>
+        protected void OnJoinPile(IShape shape)
         {
             if (JoinPile != null)
             {
-                JoinPile(this);
+                JoinPile(shape);
             }
         }
 
-		/// <summary>
-		/// Moves the <see cref="Shape"/> left.
-		/// </summary>
+        /// <summary>
+        /// Moves the <see cref="Shape"/> left.
+        /// </summary>
         public void MoveLeft()
         {
             current.MoveLeft();
         }
 
-		/// <summary>
-		/// Moves the <see cref="Shape"/> right.
-		/// </summary>
+        /// <summary>
+        /// Moves the <see cref="Shape"/> right.
+        /// </summary>
         public void MoveRight()
         {
             current.MoveRight();
         }
 
-		/// <summary>
-		/// Moves the <see cref="Shape"/> down.
-		/// </summary>
+        /// <summary>
+        /// Moves the <see cref="Shape"/> down.
+        /// </summary>
         public void MoveDown()
         {
             current.MoveDown();
         }
 
-		/// <summary>
-		/// Drops the <see cref="Shape"/> to the top of the pile.
-		/// </summary>
+        /// <summary>
+        /// Drops the <see cref="Shape"/> to the top of the pile.
+        /// </summary>
         public void Drop()
         {
             current.Drop();
         }
 
-		/// <summary>
-		/// Rotates this <see cref="Shape"/> 90 degrees counterclockwise.
-		/// </summary>
+        /// <summary>
+        /// Rotates this <see cref="Shape"/> 90 degrees counterclockwise.
+        /// </summary>
         public void Rotate()
         {
             current.Rotate();
         }
 
-		/// <summary>
-		/// Resets this instance.
-		/// </summary>
+        /// <summary>
+        /// Resets this instance.
+        /// </summary>
         public void Reset()
         {
             current.Reset();
         }
 
-        // TODO DeployNewShape() Not yet implemented
-		/// <summary>
-		/// Deploys a new shape.
-		/// </summary>
+        /// <summary>
+        /// Deploys a new shape
+        /// </summary>
         public void DeployNewShape()
         {
             int r = random.Next(7);
 
-            throw new NotImplementedException();
+            switch (r)
+            {
+                case 0:
+                    current = new ShapeI(board);
+                    break;
+                case 1:
+                    current = new ShapeJ(board);
+                    break;
+                case 2:
+                    current = new ShapeL(board);
+                    break;
+                case 3:
+                    current = new ShapeO(board);
+                    break;
+                case 4:
+                    current = new ShapeS(board);
+                    break;
+                case 5:
+                    current = new ShapeT(board);
+                    break;
+                case 6:
+                    current = new ShapeZ(board);
+                    break;
+                default:
+                    current = null;
+                    break;
+            }
+
+            // Event handler
+            current.JoinPile += new JoinPileHandler(OnJoinPile);
         }
 
         #endregion

@@ -2,7 +2,7 @@
 
 namespace TetrisLibrary
 {
-    abstract class Shape : IShape
+    public abstract class Shape : IShape
     {
         #region Fields
 
@@ -68,7 +68,7 @@ namespace TetrisLibrary
                 }
             }
 
-            // Raise event
+            // Fire event
             OnJoinPile();
         }
 
@@ -149,6 +149,10 @@ namespace TetrisLibrary
                 {
                     b.MoveDown();
                 }
+            } else
+            // It as joined the pile. Fire event
+            {
+                OnJoinPile();
             }
         }
 
@@ -164,12 +168,12 @@ namespace TetrisLibrary
 
 				// Checks whether or not each block can move
 				for (int i = 0; i < blocks.Length; i++) {
-					blocks [i].TryRotate (rotationOffset [i] [currentRotation + 1]);
+					blocks[i].TryRotate(rotationOffset[i][currentRotation + 1]);
 				}
 
 				if (canRotate) {
 					// Update current rotation
-					if (currentRotation == rotationOffset [0].Length - 1) {
+					if (currentRotation == rotationOffset[0].Length - 1) {
 						currentRotation = 0;
 					} else {
 						currentRotation++;
@@ -177,7 +181,7 @@ namespace TetrisLibrary
 
 					// Rotate each block
 					for (int i = 0; i < blocks.Length; i++) {
-						blocks [i].Rotate (rotationOffset [i] [currentRotation]);
+						blocks[i].Rotate(rotationOffset[i][currentRotation]);
 					}
 				}
 			}

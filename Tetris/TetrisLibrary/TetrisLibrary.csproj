@@ -44,7 +44,6 @@
   <ItemGroup>
     <Compile Include="Block.cs" />
     <Compile Include="Board.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="IBoard.cs" />
     <Compile Include="IShape.cs" />
     <Compile Include="IShapeFactory.cs" />

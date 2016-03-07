@@ -2,7 +2,7 @@
 
 namespace TetrisLibrary
 {
-    class ShapeI : Shape
+    public class ShapeI : Shape
     {
         private IBoard board;
 

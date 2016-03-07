@@ -43,13 +43,18 @@ namespace TetrisLibrary
 
         #region Methods
 
-		/// <summary>
-		/// Tries to move the <see cref="Block"/> left.
-		/// </summary>
-		/// <returns><c>true</c>, if the <see cref="Block"/> can move left, <c>false</c> otherwise.</returns>
+        /// <summary>
+        /// Tries to move the <see cref="Block"/> left.
+        /// </summary>
+        /// <returns><c>true</c>, if the <see cref="Block"/> can move left, <c>false</c> otherwise.</returns>
         public bool TryMoveLeft()
         {
             bool canMove = false;
+
+            if (Position.X == 0)
+            {
+                return false;
+            }
 
             if (board[Position.X - 1, Position.Y].IsEmpty)
             {
@@ -59,13 +64,18 @@ namespace TetrisLibrary
             return canMove;
         }
 
-		/// <summary>
-		/// Tries to move the <see cref="Block"/> right.
-		/// </summary>
-		/// <returns><c>true</c>, if the <see cref="Block"/> can move right, <c>false</c> otherwise.</returns>
+        /// <summary>
+        /// Tries to move the <see cref="Block"/> right.
+        /// </summary>
+        /// <returns><c>true</c>, if the <see cref="Block"/> can move right, <c>false</c> otherwise.</returns>
         public bool TryMoveRight()
         {
             bool canMove = false;
+
+            if (Position.X == board.GetLength(Position.Y) - 1)
+            {
+                return false;
+            }
 
             if (board[Position.X + 1, Position.Y].IsEmpty)
             {
@@ -75,15 +85,20 @@ namespace TetrisLibrary
             return canMove;
         }
 
-		/// <summary>
-		/// Tries to move the <see cref="Block"/> down.
-		/// </summary>
-		/// <returns><c>true</c>, if the <see cref="Block"/> can move down, <c>false</c> otherwise.</returns>
+        /// <summary>
+        /// Tries to move the <see cref="Block"/> down.
+        /// </summary>
+        /// <returns><c>true</c>, if the <see cref="Block"/> can move down, <c>false</c> otherwise.</returns>
         public bool TryMoveDown()
         {
             bool canMove = false;
 
-            if (board[Position.X, Position.Y + 1].IsEmpty)
+            if (Position.Y == 19)
+            {
+                return false;
+            }
+
+            if (board[Position.X, Position.Y - 1].IsEmpty)
             {
                 canMove = true;
             }
@@ -91,16 +106,24 @@ namespace TetrisLibrary
             return canMove;
         }
 
-		/// <summary>
-		/// Tries to rotate the <see cref="Block"./>
-		/// </summary>
-		/// <returns><c>true</c>, if the <see cref="Block"/> can be rotated, <c>false</c> otherwise.</returns>
-		/// <param name="offset">The offset to rotate the <see cref="Block"/>.</param>
+        /// <summary>
+        /// Tries to rotate the <see cref="Block"./>
+        /// </summary>
+        /// <returns><c>true</c>, if the <see cref="Block"/> can be rotated, <c>false</c> otherwise.</returns>
+        /// <param name="offset">The offset to rotate the <see cref="Block"/>.</param>
         public bool TryRotate(Point offset)
         {
             bool canRotate = false;
 
-            if (board[Position.X + offset.X, Position.Y + offset.Y].IsEmpty)
+            int newX = Position.X + offset.X;
+            int newY = Position.Y + offset.Y;
+
+            if (newX < 0 || newX > 9 || newY < 0 || newY > 19)
+            {
+                return false;
+            }
+
+            if (board[newX, newY].IsEmpty)
             {
                 canRotate = true;
             }
@@ -137,7 +160,7 @@ namespace TetrisLibrary
         {
             if (TryMoveDown())
             {
-                Position.Offset(0, 1);
+                Position.Offset(0, -1);
             }
         }
 
@@ -152,7 +175,6 @@ namespace TetrisLibrary
                 Position.Offset(offset.X, offset.Y);
             }
         }
-
         #endregion
     }
 }

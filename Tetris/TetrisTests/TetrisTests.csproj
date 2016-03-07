@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Drawing" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -50,13 +51,16 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="BlockTests.cs" />
+    <Compile Include="BoardTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScoreTests.cs" />
+    <Compile Include="ShapeTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Tetris\Tetris.csproj">
-      <Project>{ee09c225-0777-495f-bcc1-fb4cee5c2b04}</Project>
-      <Name>Tetris</Name>
+    <ProjectReference Include="..\TetrisLibrary\TetrisLibrary.csproj">
+      <Project>{4cbee0b7-01d6-4d62-b922-8d89e2697713}</Project>
+      <Name>TetrisLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

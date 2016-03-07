@@ -1,5 +1,4 @@
 ﻿using System.Drawing;
-using Microsoft.Xna.Framework;
 
 namespace TetrisLibrary
 {

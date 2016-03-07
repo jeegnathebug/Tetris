@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using TetrisLibrary;
 
 namespace TetrisTests
 {
@@ -10,6 +11,8 @@ namespace TetrisTests
         public void TestMethod1()
         {
             //arrange
+            IBoard board = new Board();
+            ShapeProxy proxy = new ShapeProxy(board);
 
             //act
 
