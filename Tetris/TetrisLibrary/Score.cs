@@ -41,7 +41,7 @@
         {
             this.board = board;
 
-            level = 0;
+            level = 1;
             lines = 0;
             _score = 0;
 

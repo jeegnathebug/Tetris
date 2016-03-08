@@ -8,6 +8,7 @@ namespace TetrisLibrary
 
         private IBoard board;
         private Color color;
+        private Point position;
 
         #endregion
 
@@ -20,8 +21,8 @@ namespace TetrisLibrary
 
         public Point Position
         {
-            get { return Position; }
-            set { Position = value; }
+            get { return position; }
+            set { position = value; }
         }
 
         #endregion
@@ -56,7 +57,7 @@ namespace TetrisLibrary
                 return false;
             }
 
-            if (board[Position.X - 1, Position.Y].IsEmpty)
+            if (board[Position.X - 1, Position.Y].Equals(Color.Black));
             {
                 canMove = true;
             }
@@ -77,7 +78,7 @@ namespace TetrisLibrary
                 return false;
             }
 
-            if (board[Position.X + 1, Position.Y].IsEmpty)
+            if (board[Position.X + 1, Position.Y].Equals(Color.Black))
             {
                 canMove = true;
             }
@@ -98,7 +99,7 @@ namespace TetrisLibrary
                 return false;
             }
 
-            if (board[Position.X, Position.Y - 1].IsEmpty)
+            if (board[Position.X, Position.Y + 1].Equals(Color.Black))
             {
                 canMove = true;
             }
@@ -160,7 +161,7 @@ namespace TetrisLibrary
         {
             if (TryMoveDown())
             {
-                Position.Offset(0, -1);
+                Position.Offset(0, 1);
             }
         }
 

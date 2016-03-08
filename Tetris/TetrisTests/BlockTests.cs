@@ -78,7 +78,7 @@ namespace TetrisTests
             //arrange
             Board board = new Board();
             Block block = new Block(board, Color.White);
-            block.Position = new Point(0, 1);
+           // block.Position = new Point(0, 1);
             bool x;
 
             //act
@@ -127,7 +127,7 @@ namespace TetrisTests
             Board board = new Board();
             Block block = new Block(board, Color.White);
             block.Position = new Point(8, 6);
-            Point offset = new Point(2, 2); // Go to 10,8
+            Point offset = new Point(2, 2); // Go to 10,8 -> does not exist
             bool x;
 
             //act

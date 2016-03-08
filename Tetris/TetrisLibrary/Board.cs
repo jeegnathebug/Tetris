@@ -24,7 +24,7 @@ namespace TetrisLibrary
 
         public Color this[int i, int j]
         {
-            get { return this[i, j]; }
+            get { return board[i, j]; }
         }
 
         #endregion
@@ -38,6 +38,13 @@ namespace TetrisLibrary
         public Board()
         {
             board = new Color[10, 20];
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 20; j++)
+                {
+                    board[i, j] = Color.Black;
+                }
+            }
 
             // TODO pretty sure this is wrong
             ShapeProxy proxy = new ShapeProxy(this);
@@ -95,7 +102,7 @@ namespace TetrisLibrary
         {
             for (int i = 0; i < shape.Length; i++)
             {
-                board[(shape[i].Position.X + 5), (-shape[i].Position.Y)] = shape[i].Color;
+                board[shape[i].Position.X, shape[i].Position.Y] = shape[i].Color;
             }
 
             // Clear any line that has been completed

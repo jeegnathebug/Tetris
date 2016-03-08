@@ -15,7 +15,9 @@ namespace TetrisTests
 
             //act
 
+
             //assert
+            Assert.IsTrue(true);
         }
 
         [TestMethod]
@@ -26,6 +28,7 @@ namespace TetrisTests
             //act
 
             //assert
+            Assert.IsTrue(true);
         }
 
         [TestMethod]
@@ -36,6 +39,7 @@ namespace TetrisTests
             //act
 
             //assert
+            Assert.IsTrue(true);
         }
 
         [TestMethod]
@@ -46,6 +50,7 @@ namespace TetrisTests
             //act
 
             //assert
+            Assert.IsTrue(true);
         }
 
         [TestMethod]
@@ -56,6 +61,7 @@ namespace TetrisTests
             //act
 
             //assert
+            Assert.IsTrue(true);
         }
 
         [TestMethod]
@@ -66,6 +72,7 @@ namespace TetrisTests
             //act
 
             //assert
+            Assert.IsTrue(true);
         }
 
         [TestMethod]
@@ -76,6 +83,7 @@ namespace TetrisTests
             //act
 
             //assert
+            Assert.IsTrue(true);
         }
     }
 }
