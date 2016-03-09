@@ -24,7 +24,7 @@ namespace TetrisLibrary
             // Set rotations
             rotationOffset = new Point[][]
             {
-                new Point[] { new Point(0, 3), new Point(3, 0), new Point(0, -3), new Point(-3, 0) },
+                new Point[] { new Point(0, 2), new Point(2, 0), new Point(0, -2), new Point(-2, 0) },
                 new Point[] { new Point(-1, 1), new Point(1, 1), new Point(1, -1), new Point(-1, -1) },
                 new Point[] { new Point(0, 0), new Point(0, 0), new Point(0, 0), new Point(0, 0) },
                 new Point[] { new Point(1, -1), new Point(-1, -1), new Point(-1, 1), new Point(1, 1) }
