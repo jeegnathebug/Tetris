@@ -4,16 +4,12 @@ namespace TetrisLibrary
 {
     public class ShapeI : Shape
     {
-        private IBoard board;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="ShapeI"/> class.
         /// </summary>
         /// <param name="board">The board being used.</param>
-        public ShapeI(IBoard board)
+        public ShapeI(IBoard board) : base(board)
         {
-            this.board = board;
-
             // Initialize blocks
             blocks = new Block[] {
                 new Block (board, Color.Cyan),
@@ -37,11 +33,13 @@ namespace TetrisLibrary
             // 0 = no rotation
             // 1 = 90 degree rotation counterclockwise
             currentRotation = 0;
+
+            length = blocks.Length;
         }
 
-		/// <summary>
-		/// Sets the blocks' positions.
-		/// </summary>
+        /// <summary>
+        /// Sets the blocks' positions.
+        /// </summary>
         protected override void setBlockPositions()
         {
             blocks[0].Position = new Point(3, 0);

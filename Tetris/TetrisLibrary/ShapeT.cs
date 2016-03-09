@@ -4,16 +4,12 @@ namespace TetrisLibrary
 {
     public class ShapeT : Shape
     {
-        private IBoard board;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="ShapeT"/> class.
         /// </summary>
         /// <param name="board">The board being used.</param>
-        public ShapeT(IBoard board)
+        public ShapeT(IBoard board) : base(board)
         {
-            this.board = board;
-
             // Initialize blocks
             blocks = new Block[] {
                 new Block(board, Color.Purple),
@@ -39,6 +35,8 @@ namespace TetrisLibrary
             // 2 = 180 degree rotation counterclockwise
             // 3 = 270 degree rotation counterclockwise
             currentRotation = 0;
+
+            length = blocks.Length;
         }
 
         /// <summary>

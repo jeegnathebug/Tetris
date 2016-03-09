@@ -4,16 +4,12 @@ namespace TetrisLibrary
 {
     public class ShapeO : Shape
     {
-        private IBoard board;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="ShapeO"/> class.
         /// </summary>
         /// <param name="board">The board being used.</param>
-        public ShapeO(IBoard board)
+        public ShapeO(IBoard board) : base(board)
         {
-            this.board = board;
-
             // Initialize blocks
             blocks = new Block[] {
                 new Block (board, Color.Yellow),
@@ -27,6 +23,8 @@ namespace TetrisLibrary
 
             // -1 = do not rotate
             currentRotation = -1;
+
+            length = blocks.Length;
         }
 
 		/// <summary>

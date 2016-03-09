@@ -4,15 +4,12 @@ namespace TetrisLibrary
 {
     public class ShapeZ : Shape
     {
-        private IBoard board;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="ShapeZ"/> class.
         /// </summary>
         /// <param name="board">The board being used.</param>
-        public ShapeZ(IBoard board)
+        public ShapeZ(IBoard board) : base(board)
         {
-            this.board = board;
 
             // Initialize blocks
             blocks = new Block[] {
@@ -37,6 +34,8 @@ namespace TetrisLibrary
             // 0 = no rotation
             // 1 = 90 degree rotation counterclockwise
             currentRotation = 0;
+
+            length = blocks.Length;
         }
 
         /// <summary>

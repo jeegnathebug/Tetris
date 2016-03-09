@@ -7,7 +7,7 @@ namespace TetrisLibrary
         #region Fields
 
         private IBoard board;
-        private int length;
+        protected int length;
 
         protected Block[] blocks;
         protected Point[][] rotationOffset;
@@ -37,9 +37,9 @@ namespace TetrisLibrary
         /// <summary>
         /// Initializes a new instance of the <see cref="Shape"/> class.
         /// </summary>
-        public Shape()
+        public Shape(IBoard board)
         {
-            length = 4;
+            this.board = board;
         }
 
         #endregion
@@ -171,7 +171,7 @@ namespace TetrisLibrary
                     newRotation = 0;
                 } else
                 {
-                    newRotation = currentRotation++;
+                    newRotation = currentRotation + 1;
                 }
 
 				bool canRotate = true;

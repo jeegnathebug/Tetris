@@ -4,16 +4,12 @@ namespace TetrisLibrary
 {
     public class ShapeJ : Shape
     {
-        private IBoard board;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="ShapeJ"/> class.
         /// </summary>
         /// <param name="board">The board being used.</param>
-        public ShapeJ(IBoard board)
+        public ShapeJ(IBoard board) : base(board)
         {
-            this.board = board;
-
             // Initialize blocks
             blocks = new Block[] {
                 new Block (board, Color.Blue),
@@ -31,7 +27,7 @@ namespace TetrisLibrary
                 new Point[] { new Point(-1, 1), new Point(1, 1), new Point(1, -1), new Point(-1, -1) },
                 new Point[] { new Point(0, 0), new Point(0, 0), new Point(0, 0), new Point(0, 0) },
                 new Point[] { new Point(1, -1), new Point(-1, -1), new Point(-1, 1), new Point(1, 1) },
-                new Point[] { new Point(1, -1), new Point(1, 1), new Point(-1, 1), new Point(-1, -1) }
+                new Point[] { new Point(2, 0), new Point(0, -2), new Point(-2, 0), new Point(0, 2) }
             };
 
             // 0 = no rotation
@@ -39,11 +35,13 @@ namespace TetrisLibrary
             // 2 = 180 degree rotation counterclockwise
             // 3 = 270 degree rotation counterclockwise
             currentRotation = 0;
+
+            length = blocks.Length;
         }
 
-		/// <summary>
-		/// Sets the blocks' positions.
-		/// </summary>
+        /// <summary>
+        /// Sets the blocks' positions.
+        /// </summary>
         protected override void setBlockPositions()
         {
             blocks[0].Position = new Point(4, 0);

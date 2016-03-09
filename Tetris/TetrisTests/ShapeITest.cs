@@ -136,5 +136,28 @@ namespace TetrisTests
             Assert.AreEqual(6, shape[3].Position.X);
             Assert.AreEqual(19, shape[3].Position.Y);
         }
+
+        [TestMethod]
+        public void TestMethodShapeI_Reset()
+        {
+            //arrange
+            IBoard board = new Board();
+            ShapeI shape = new ShapeI(board);
+
+            shape.MoveDown();
+
+            //act
+            shape.Reset();
+
+            //assert
+            Assert.AreEqual(3, shape[0].Position.X);
+            Assert.AreEqual(0, shape[0].Position.Y);
+            Assert.AreEqual(4, shape[1].Position.X);
+            Assert.AreEqual(0, shape[1].Position.Y);
+            Assert.AreEqual(5, shape[2].Position.X);
+            Assert.AreEqual(0, shape[2].Position.Y);
+            Assert.AreEqual(6, shape[3].Position.X);
+            Assert.AreEqual(0, shape[3].Position.Y);
+        }
     }
 }
