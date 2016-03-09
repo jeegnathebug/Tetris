@@ -15,7 +15,6 @@ namespace TetrisTests
 
             //act
 
-
             //assert
             Assert.IsTrue(true);
         }
@@ -23,9 +22,12 @@ namespace TetrisTests
         [TestMethod]
         public void TestMethodShapeJ()
         {
-            //arrange
+            ///arrange
+            IBoard board = new Board();
+            ShapeJ j = new ShapeJ(board);
 
             //act
+
 
             //assert
             Assert.IsTrue(true);
@@ -35,8 +37,11 @@ namespace TetrisTests
         public void TestMethodShapeL()
         {
             //arrange
+            IBoard board = new Board();
+            ShapeL l = new ShapeL(board);
 
             //act
+
 
             //assert
             Assert.IsTrue(true);
@@ -46,8 +51,11 @@ namespace TetrisTests
         public void TestMethodShapeO()
         {
             //arrange
+            IBoard board = new Board();
+            ShapeO o = new ShapeO(board);
 
             //act
+
 
             //assert
             Assert.IsTrue(true);
@@ -57,8 +65,11 @@ namespace TetrisTests
         public void TestMethodShapeS()
         {
             //arrange
+            IBoard board = new Board();
+            ShapeS s = new ShapeS(board);
 
             //act
+
 
             //assert
             Assert.IsTrue(true);
@@ -68,8 +79,11 @@ namespace TetrisTests
         public void TestMethodShapeT()
         {
             //arrange
+            IBoard board = new Board();
+            ShapeT t = new ShapeT(board);
 
             //act
+
 
             //assert
             Assert.IsTrue(true);
@@ -79,8 +93,11 @@ namespace TetrisTests
         public void TestMethodShapeZ()
         {
             //arrange
+            IBoard board = new Board();
+            ShapeZ z = new ShapeZ(board);
 
             //act
+
 
             //assert
             Assert.IsTrue(true);
