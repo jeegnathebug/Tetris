@@ -7,6 +7,9 @@ namespace TetrisLibrary
         #region Fields
 
         private IBoard board;
+        private int x;
+        private int y;
+
         private Color color;
         private Point position;
 
@@ -37,6 +40,9 @@ namespace TetrisLibrary
         public Block(IBoard board, Color color)
         {
             this.board = board;
+            x = board.GetLength(0) - 1;
+            y = board.GetLength(1) - 1;
+
             this.color = color;
         }
 
@@ -52,12 +58,12 @@ namespace TetrisLibrary
         {
             bool canMove = false;
 
-            if (Position.X == 0)
+            if (position.X == 0)
             {
                 return false;
             }
 
-            if (board[Position.X - 1, Position.Y].Equals(Color.Black));
+            if (board[position.X - 1, position.Y].Equals(Color.Black));
             {
                 canMove = true;
             }
@@ -73,12 +79,12 @@ namespace TetrisLibrary
         {
             bool canMove = false;
 
-            if (Position.X == board.GetLength(Position.Y) - 1)
+            if (position.X == x)
             {
                 return false;
             }
 
-            if (board[Position.X + 1, Position.Y].Equals(Color.Black))
+            if (board[position.X + 1, position.Y].Equals(Color.Black))
             {
                 canMove = true;
             }
@@ -94,12 +100,12 @@ namespace TetrisLibrary
         {
             bool canMove = false;
 
-            if (Position.Y == 19)
+            if (position.Y == y)
             {
                 return false;
             }
 
-            if (board[Position.X, Position.Y + 1].Equals(Color.Black))
+            if (board[position.X, position.Y + 1].Equals(Color.Black))
             {
                 canMove = true;
             }
@@ -116,15 +122,16 @@ namespace TetrisLibrary
         {
             bool canRotate = false;
 
-            int newX = Position.X + offset.X;
-            int newY = Position.Y + offset.Y;
+            int newX = position.X + offset.X;
+            int newY = position.Y + offset.Y;
 
-            if (newX < 0 || newX > 9 || newY < 0 || newY > 19)
+            // Check board boundaries
+            if ((newX < 0 || newX > x) || (newY < 0 || newY > y))
             {
                 return false;
             }
 
-            if (board[newX, newY].IsEmpty)
+            if (board[newX, newY].Equals(Color.Black))
             {
                 canRotate = true;
             }
@@ -139,7 +146,7 @@ namespace TetrisLibrary
         {
             if (TryMoveLeft())
             {
-                Position.Offset(-1, 0);
+                position.Offset(-1, 0);
             }
         }
 
@@ -150,7 +157,7 @@ namespace TetrisLibrary
         {
             if (TryMoveRight())
             {
-                Position.Offset(1, 0);
+                position.Offset(1, 0);
             }
         }
 
@@ -161,7 +168,7 @@ namespace TetrisLibrary
         {
             if (TryMoveDown())
             {
-                Position.Offset(0, 1);
+                position.Offset(0, 1);
             }
         }
 
@@ -173,7 +180,7 @@ namespace TetrisLibrary
         {
             if (TryRotate(offset))
             {
-                Position.Offset(offset.X, offset.Y);
+                position.Offset(offset.X, offset.Y);
             }
         }
         #endregion

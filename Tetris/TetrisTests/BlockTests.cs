@@ -13,6 +13,7 @@ namespace TetrisTests
             //arrange
             Board board = new Board();
             Block block = new Block(board, Color.White);
+
             block.Position = new Point(2, 1);
             bool x;
 
@@ -62,7 +63,7 @@ namespace TetrisTests
             Board board = new Board();
             Block block = new Block(board, Color.White);
             block.Position = new Point(8, 6);
-            Point offset = new Point(1, 2); // Go to 9,8
+            Point offset = new Point(1, 2); // Goes to 9,8
             bool x;
 
             //act
@@ -182,7 +183,7 @@ namespace TetrisTests
 
             //assert
             Assert.AreEqual(1, block.Position.X);
-            Assert.AreEqual(6, block.Position.Y);
+            Assert.AreEqual(7, block.Position.Y);
         }
 
         [TestMethod]

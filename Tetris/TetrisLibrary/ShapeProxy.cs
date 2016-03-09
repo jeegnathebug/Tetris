@@ -111,35 +111,33 @@ namespace TetrisLibrary
         {
             int r = random.Next(7);
 
-            //switch (r)
-            //{
-            //    case 0:
-            //        current = new ShapeI(board);
-            //        break;
-            //    case 1:
-            //        current = new ShapeJ(board);
-            //        break;
-            //    case 2:
-            //        current = new ShapeL(board);
-            //        break;
-            //    case 3:
-            //        current = new ShapeO(board);
-            //        break;
-            //    case 4:
-            //        current = new ShapeS(board);
-            //        break;
-            //    case 5:
-            //        current = new ShapeT(board);
-            //        break;
-            //    case 6:
-            //        current = new ShapeZ(board);
-            //        break;
-            //    default:
-            //        current = null;
-            //        break;
-            //}
-
-            current = new ShapeZ(board);
+            switch (r)
+            {
+                case 0:
+                    current = new ShapeI(board);
+                    break;
+                case 1:
+                    current = new ShapeJ(board);
+                    break;
+                case 2:
+                    current = new ShapeL(board);
+                    break;
+                case 3:
+                    current = new ShapeO(board);
+                    break;
+                case 4:
+                    current = new ShapeS(board);
+                    break;
+                case 5:
+                    current = new ShapeT(board);
+                    break;
+                case 6:
+                    current = new ShapeZ(board);
+                    break;
+                default:
+                    current = null;
+                    break;
+            }
 
             // Event handler
             current.JoinPile += new JoinPileHandler(OnJoinPile);

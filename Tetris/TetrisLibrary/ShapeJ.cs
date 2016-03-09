@@ -28,9 +28,9 @@ namespace TetrisLibrary
             // Set rotations
             rotationOffset = new Point[][]
             {
-                new Point[] { new Point(-1, 0), new Point(0, -1), new Point(1, 0), new Point(0, 1) },
+                new Point[] { new Point(-1, 1), new Point(1, 1), new Point(1, -1), new Point(-1, -1) },
                 new Point[] { new Point(0, 0), new Point(0, 0), new Point(0, 0), new Point(0, 0) },
-                new Point[] { new Point(1, 0), new Point(0, 1), new Point(-1, 0), new Point(0, -1) },
+                new Point[] { new Point(1, -1), new Point(-1, -1), new Point(-1, 1), new Point(1, 1) },
                 new Point[] { new Point(1, -1), new Point(1, 1), new Point(-1, 1), new Point(-1, -1) }
             };
 
@@ -46,10 +46,10 @@ namespace TetrisLibrary
 		/// </summary>
         protected override void setBlockPositions()
         {
-            blocks[0].Position = new Point(-1, 0);
-            blocks[1].Position = new Point(0, 0);
-            blocks[2].Position = new Point(1, 0);
-            blocks[3].Position = new Point(1, -1);
+            blocks[0].Position = new Point(4, 0);
+            blocks[1].Position = new Point(5, 0);
+            blocks[2].Position = new Point(6, 0);
+            blocks[3].Position = new Point(6, 1);
         }
     }
 }

@@ -164,26 +164,32 @@ namespace TetrisLibrary
             // Rotate only if currentRotation is not -1. Only used for ShapeO
 			if (currentRotation != -1) {
 
+                int newRotation;
+
+                if (currentRotation == rotationOffset[0].Length - 1)
+                {
+                    newRotation = 0;
+                } else
+                {
+                    newRotation = currentRotation++;
+                }
+
 				bool canRotate = true;
 
 				// Checks whether or not each block can move
 				for (int i = 0; i < blocks.Length; i++) {
-					blocks[i].TryRotate(rotationOffset[i][currentRotation + 1]);
+					canRotate &= blocks[i].TryRotate(rotationOffset[i][newRotation]);
 				}
 
 				if (canRotate) {
-					// Update current rotation
-					if (currentRotation == rotationOffset[0].Length - 1) {
-						currentRotation = 0;
-					} else {
-						currentRotation++;
-					}
-
 					// Rotate each block
 					for (int i = 0; i < blocks.Length; i++) {
-						blocks[i].Rotate(rotationOffset[i][currentRotation]);
+						blocks[i].Rotate(rotationOffset[i][newRotation]);
 					}
-				}
+
+                    // Update current rotation
+                    currentRotation = newRotation;
+                }
 			}
         }
 
