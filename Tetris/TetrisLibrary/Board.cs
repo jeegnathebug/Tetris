@@ -26,6 +26,12 @@ namespace TetrisLibrary
         {
             get { return board[i, j]; }
         }
+        
+		// FOR TESTING
+		public IShapeFactory ShapeFactory
+		{
+			get { return shapeFactory; }
+		}
 
         #endregion
 
@@ -116,10 +122,10 @@ namespace TetrisLibrary
         {
             int num = 0;
 
-            // Check lines
             bool cleared = true;
             for (int i = 0; i < board.GetLength(1); i++)
             {
+                // Check lines
                 for (int j = 0; j < GetLength(j); j++)
                 {
                     cleared &= !board[i, j].IsEmpty;
@@ -127,6 +133,17 @@ namespace TetrisLibrary
 
                 if (cleared)
                 {
+                    // Clear lines
+					for (int k = 0; k < GetLength(0); k++)
+					{
+						board[i, k] = Equals(Color.Black);
+						
+						// TODO make lines above cleared lines drop
+						// start from top of board
+						// once it finds one cleared line, bring everything above it down
+						// keep going through all lines of board, and repeat
+					}
+					
                     num++;
                 }
 
