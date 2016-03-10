@@ -26,7 +26,7 @@ namespace TetrisTests
 		shape.Drop();
 	
 		shapeFactory.DeployShape(3);
-		shape = board.Shape
+        shape = board.Shape;
 		shape.MoveLeft();
 		shape.MoveLeft();
 		shape.Drop();

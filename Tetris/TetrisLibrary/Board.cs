@@ -136,7 +136,7 @@ namespace TetrisLibrary
                     // Clear lines
 					for (int k = 0; k < GetLength(0); k++)
 					{
-						board[i, k] = Equals(Color.Black);
+						board[i, k].Equals(Color.Black);
 						
 						// TODO make lines above cleared lines drop
 						// start from top of board
