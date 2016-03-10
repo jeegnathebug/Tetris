@@ -8,6 +8,16 @@ namespace TetrisTests
     public class BoardTests
     {
         [TestMethod]
+        public void ValidConstructor()
+        {
+            //arrange
+            IBoard board = new Board();
+
+            //assert
+            Assert.IsInstanceOfType(board,typeof(IBoard));
+        }
+        
+        [TestMethod]
         public void MoveDown()
         {
             //arrange
