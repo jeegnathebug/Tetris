@@ -1,4 +1,7 @@
 Check the Wiki for more information on how this game is being made.
+##TODO for testing Shapes
+1.  Check for Rotation, MoveLeft(), MoveRight(), and MoveDown() when NOT POSSIBLE (Assert.IsFalse());
+2.  Check for Game Over conditions
 
 # Tetris
 Tetris is a popular retro game, where a random sequence of pieces composed of four square blocks fall down the playing grid. 
@@ -28,3 +31,8 @@ C#
 (+) Library for business class  
 (+) Business Classes structure (found in wiki)  
 (+) Unit Testing Project & Corresponding classes (in the works)  
+
+###Version 2.0
+(+) Logic Completed
+(+) Unit Testing Structure
+(+) Some Unit Testing Completed (Some Shapes, etc) 
