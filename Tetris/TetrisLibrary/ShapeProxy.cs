@@ -104,44 +104,50 @@ namespace TetrisLibrary
             current.Reset();
         }
 
-        /// <summary>
-        /// Deploys a new shape
+         /// <summary>
+        /// Deploys a randomly chosen new shape
         /// </summary>
         public void DeployNewShape()
         {
-            int r = random.Next(7);
-
-            switch (r)
-            {
-                case 0:
-                    current = new ShapeI(board);
-                    break;
-                case 1:
-                    current = new ShapeJ(board);
-                    break;
-                case 2:
-                    current = new ShapeL(board);
-                    break;
-                case 3:
-                    current = new ShapeO(board);
-                    break;
-                case 4:
-                    current = new ShapeS(board);
-                    break;
-                case 5:
-                    current = new ShapeT(board);
-                    break;
-                case 6:
-                    current = new ShapeZ(board);
-                    break;
-                default:
-                    current = null;
-                    break;
-            }
-
-            // Event handler
-            current.JoinPile += new JoinPileHandler(OnJoinPile);
+			DeployShape(random.Next (7));
         }
+
+		/// <summary>
+		/// Deploys a <see cref="Shape"/> based on the given number.
+		/// </summary>
+		/// <param name="num">The number of the <see cref="Shape"/>, where 0 = ShapeI, 1 = Shape J, 2 = ShapeL, 3 = ShapeO, 4 = ShapeS, 5 = ShapeT, and 6 = ShapeZ</param>
+		public void DeployShape(int num) {
+			switch (num)
+			{
+			case 0:
+				current = new ShapeI(board);
+				break;
+			case 1:
+				current = new ShapeJ(board);
+				break;
+			case 2:
+				current = new ShapeL(board);
+				break;
+			case 3:
+				current = new ShapeO(board);
+				break;
+			case 4:
+				current = new ShapeS(board);
+				break;
+			case 5:
+				current = new ShapeT(board);
+				break;
+			case 6:
+				current = new ShapeZ(board);
+				break;
+			default:
+				current = null;
+				break;
+			}
+
+			// Event handler
+			current.JoinPile += new JoinPileHandler(OnJoinPile);
+		}
 
         #endregion
     }
