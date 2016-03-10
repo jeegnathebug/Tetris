@@ -1,6 +1,6 @@
 ﻿namespace TetrisLibrary
 {
-    interface IShapeFactory
+    public interface IShapeFactory
     {
         /// <summary>
         /// Deploys a new <see cref="Shape"/> instance.
