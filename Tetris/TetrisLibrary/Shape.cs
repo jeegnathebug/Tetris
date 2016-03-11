@@ -55,9 +55,6 @@ namespace TetrisLibrary
             {
                 MoveDown();
             }
-
-            // Fire event
-            OnJoinPile();
         }
 
         /// <summary>
@@ -133,11 +130,6 @@ namespace TetrisLibrary
                     b.MoveDown();
                 }
             }
-            else
-            // It has joined the pile. Fire event
-            {
-                OnJoinPile();
-            }
         }
 
         /// <summary>
@@ -202,6 +194,11 @@ namespace TetrisLibrary
             for (int i = 0; i < blocks.Length; i++)
             {
                 canMove &= blocks[i].TryMoveDown();
+            }
+
+            if (!canMove)
+            {
+                OnJoinPile();
             }
 
             return canMove;

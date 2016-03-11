@@ -61,6 +61,7 @@
     <Compile Include="ShapeJTest.cs" />
     <Compile Include="ShapeLTest.cs" />
     <Compile Include="ShapeOTest.cs" />
+    <Compile Include="ShapeProxyTest.cs" />
     <Compile Include="ShapeSTest.cs" />
     <Compile Include="ShapeTTest.cs" />
     <Compile Include="ShapeZTest.cs" />
