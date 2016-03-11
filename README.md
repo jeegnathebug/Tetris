@@ -30,6 +30,6 @@ C#
 (+) Unit Testing Project & Corresponding classes (in the works)  
 
 ###Version 2.0
-(+) Logic Completed
-(+) Unit Testing Structure
-(+) Some Unit Testing Completed (Some Shapes, etc) 
+(+) Logic Completed  
+(+) Unit Testing Structure  
+(+) Some Unit Testing Completed (Some Shapes, etc)   
