@@ -8,6 +8,7 @@ namespace TetrisLibrary
 
         private static Random random;
 
+        private int length;
         private IBoard board;
         // The shape I'm pretending to be
         private IShape current;
@@ -20,7 +21,7 @@ namespace TetrisLibrary
 
         public int Length
         {
-            get { return Length; }
+            get { return length; }
         }
 
         public Block this[int i]
@@ -149,6 +150,9 @@ namespace TetrisLibrary
 
 			// Event handler
 			current.JoinPile += new JoinPileHandler(OnJoinPile);
+
+            // Length
+            length = current.Length;
 		}
 
         #endregion

@@ -115,6 +115,9 @@ namespace TetrisLibrary
 
             // Create new shape for ShapeProxy
             shapeFactory.DeployNewShape();
+
+            // Check game over
+            gameOver();
         }
 
         private void clearLines()
@@ -159,6 +162,24 @@ namespace TetrisLibrary
             {
                 board[i, j - 1] = board[i, j];
                 board[i, j].Equals(Color.Black);
+            }
+        }
+
+        private void gameOver()
+        {
+            bool canPlace = true;
+
+            // Check if new shape can be placed at start location
+            for (int i = 0; i < shape.Length; i++)
+            {
+                Point p = shape[i].Position;
+                canPlace &= board[p.X, p.Y].Equals(Color.Black);
+            }
+
+            // If block cannot be placed, end game
+            if (!canPlace)
+            {
+                OnGameOver();
             }
         }
 
