@@ -202,10 +202,12 @@ namespace TetrisTests
             //arrange
             IBoard board = new Board();
             ShapeT shape = new ShapeT(board);
+
             //act
             shape.MoveDown();
             shape.Rotate();
             shape.Drop();
+
             //assert
             Assert.AreEqual(new Point(5, 19), shape[0].Position);
             Assert.AreEqual(new Point(5, 18), shape[1].Position);
@@ -268,6 +270,6 @@ namespace TetrisTests
             Assert.AreEqual(new Point(5, 1), shape[2].Position);
             Assert.AreEqual(new Point(6, 0), shape[3].Position);
         }
-
+        
     }
 }
