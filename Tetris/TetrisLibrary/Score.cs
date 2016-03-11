@@ -61,6 +61,12 @@
         {
             if (num >= 0)
             {
+                // Update lines cleared
+                lines += num;
+
+                // Update level
+                level = lines <= 10 ? lines : 10;
+
                 // Update score for tetris (800 points)
                 if (num == 4)
                 {
@@ -72,12 +78,6 @@
                 {
                     _score += num * 100;
                 }
-
-                // Update lines cleared
-                lines += num;
-
-                // Update level
-                level = lines <= 10 ? lines : 10;
             }
         }
 

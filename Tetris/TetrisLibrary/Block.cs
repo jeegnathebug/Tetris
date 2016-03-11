@@ -63,7 +63,7 @@ namespace TetrisLibrary
                 return false;
             }
 
-            if (board[position.X - 1, position.Y].Equals(Color.Black));
+            if (board[position.X - 1, position.Y].Equals(Color.Black))
             {
                 canMove = true;
             }

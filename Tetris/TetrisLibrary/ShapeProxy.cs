@@ -7,8 +7,10 @@ namespace TetrisLibrary
         #region Fields
 
         private static Random random;
-        private IShape current; // The shape I'm pretending to be
+
         private IBoard board;
+        // The shape I'm pretending to be
+        private IShape current;
 
         public event JoinPileHandler JoinPile;
 
@@ -109,7 +111,7 @@ namespace TetrisLibrary
         /// </summary>
         public void DeployNewShape()
         {
-			DeployShape(random.Next (7));
+			DeployShape(random.Next(7));
         }
 
 		/// <summary>

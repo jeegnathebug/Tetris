@@ -149,8 +149,9 @@ namespace TetrisLibrary
                 {
                     b.MoveDown();
                 }
-            } else
-            // It as joined the pile. Fire event
+            }
+            else
+            // It has joined the pile. Fire event
             {
                 OnJoinPile();
             }
@@ -162,35 +163,39 @@ namespace TetrisLibrary
         public void Rotate()
         {
             // Rotate only if currentRotation is not -1. Only used for ShapeO
-			if (currentRotation != -1) {
-
+            if (currentRotation != -1)
+            {
                 int newRotation;
 
                 if (currentRotation == rotationOffset[0].Length - 1)
                 {
                     newRotation = 0;
-                } else
+                }
+                else
                 {
                     newRotation = currentRotation + 1;
                 }
 
-				bool canRotate = true;
+                bool canRotate = true;
 
-				// Checks whether or not each block can move
-				for (int i = 0; i < blocks.Length; i++) {
-					canRotate &= blocks[i].TryRotate(rotationOffset[i][newRotation]);
-				}
+                // Checks whether or not each block can move
+                for (int i = 0; i < blocks.Length; i++)
+                {
+                    canRotate &= blocks[i].TryRotate(rotationOffset[i][newRotation]);
+                }
 
-				if (canRotate) {
-					// Rotate each block
-					for (int i = 0; i < blocks.Length; i++) {
-						blocks[i].Rotate(rotationOffset[i][newRotation]);
-					}
+                if (canRotate)
+                {
+                    // Rotate each block
+                    for (int i = 0; i < blocks.Length; i++)
+                    {
+                        blocks[i].Rotate(rotationOffset[i][newRotation]);
+                    }
 
                     // Update current rotation
                     currentRotation = newRotation;
                 }
-			}
+            }
         }
 
         /// <summary>

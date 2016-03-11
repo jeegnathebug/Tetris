@@ -26,12 +26,12 @@ namespace TetrisLibrary
         {
             get { return board[i, j]; }
         }
-        
-		// FOR TESTING
-		public IShapeFactory ShapeFactory
-		{
-			get { return shapeFactory; }
-		}
+
+        // FOR TESTING
+        public IShapeFactory ShapeFactory
+        {
+            get { return shapeFactory; }
+        }
 
         #endregion
 
@@ -52,7 +52,6 @@ namespace TetrisLibrary
                 }
             }
 
-            // TODO pretty sure this is wrong
             ShapeProxy proxy = new ShapeProxy(this);
             shapeFactory = proxy;
             shape = proxy;
@@ -122,38 +121,44 @@ namespace TetrisLibrary
         {
             int num = 0;
 
-            bool cleared = true;
-            for (int i = 0; i < board.GetLength(1); i++)
+            // Go through each row
+            for (int j = 0; j < board.GetLength(1); j++)
             {
-                // Check lines
-                for (int j = 0; j < GetLength(j); j++)
+                bool cleared = true;
+
+                // Check each block
+                for (int i = 0; i < GetLength(0); i++)
                 {
-                    cleared &= !board[i, j].IsEmpty;
+                    cleared &= !board[i, j].Equals(Color.Black);
                 }
 
+                // If the line needs to be cleared
                 if (cleared)
                 {
-                    // Clear lines
-					for (int k = 0; k < GetLength(0); k++)
-					{
-						board[i, k].Equals(Color.Black);
-						
-						// TODO make lines above cleared lines drop
-						// start from top of board
-						// once it finds one cleared line, bring everything above it down
-						// keep going through all lines of board, and repeat
-					}
-					
+                    dropLines(j);
+
+                    // Increment lines cleared
                     num++;
                 }
-
-                cleared = true;
             }
 
             // If any lines were cleared, fire event
             if (num != 0)
             {
                 OnLinesCleared(num);
+            }
+        }
+
+        /// <summary>
+        /// Drops the given line until it joins the pile
+        /// </summary>
+        /// <param name="row">The line to drop</param>
+        private void dropLines(int j)
+        {
+            for (int i = 0; i < board.GetLength(0); i++)
+            {
+                board[i, j - 1] = board[i, j];
+                board[i, j].Equals(Color.Black);
             }
         }
 
