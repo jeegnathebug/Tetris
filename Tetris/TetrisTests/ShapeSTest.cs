@@ -1,5 +1,6 @@
 ﻿using TetrisLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Drawing;
 
 namespace TetrisTests
 {
@@ -148,14 +149,66 @@ namespace TetrisTests
             shape.Reset();
 
             //assert
-            Assert.AreEqual(4, shape[0].Position.X);
-            Assert.AreEqual(1, shape[0].Position.Y);
-            Assert.AreEqual(5, shape[1].Position.X);
-            Assert.AreEqual(1, shape[1].Position.Y);
-            Assert.AreEqual(5, shape[2].Position.X);
-            Assert.AreEqual(0, shape[2].Position.Y);
-            Assert.AreEqual(6, shape[3].Position.X);
-            Assert.AreEqual(0, shape[3].Position.Y);
+            Assert.AreEqual(new Point(4, 1), shape[0].Position);
+            Assert.AreEqual(new Point(5, 1), shape[1].Position);
+            Assert.AreEqual(new Point(5, 0), shape[2].Position);
+            Assert.AreEqual(new Point(6, 0), shape[3].Position);
+       
         }
+        [TestMethod]
+        public void TestShapeS_DownRotateLeft()
+        {
+            //arrange
+            IBoard board = new Board();
+            ShapeS shape = new ShapeS(board);
+
+            //act
+            shape.MoveDown();
+            shape.Rotate();
+            shape.MoveLeft();
+
+
+            //assert
+            Assert.AreEqual(new Point(5, 2), shape[0].Position);
+            Assert.AreEqual(new Point(5, 1), shape[1].Position);
+            Assert.AreEqual(new Point(4, 1), shape[2].Position);
+            Assert.AreEqual(new Point(4, 0), shape[3].Position);
+        }
+        [TestMethod]
+        public void TestShapeS_DownRotateRight()
+        {
+            //arrange
+            IBoard board = new Board();
+            ShapeS shape = new ShapeS(board);
+
+            //act
+            shape.MoveDown();
+            shape.Rotate();
+            shape.MoveLeft();
+
+
+            //assert
+            Assert.AreEqual(new Point(5, 2), shape[0].Position);
+            Assert.AreEqual(new Point(5, 1), shape[1].Position);
+            Assert.AreEqual(new Point(4, 1), shape[2].Position);
+            Assert.AreEqual(new Point(4, 0), shape[3].Position);
+        }
+        [TestMethod]
+        public void TestShapeS_DownRotateDrop()
+        {
+            //arrange
+            IBoard board = new Board();
+            ShapeS shape = new ShapeS(board);
+            // Act
+            shape.MoveDown();
+            shape.Rotate();
+            shape.Drop();
+            // Assert
+            Assert.AreEqual(new Point(6, 19), shape[0].Position);
+            Assert.AreEqual(new Point(6, 18), shape[1].Position);
+            Assert.AreEqual(new Point(5, 18), shape[2].Position);
+            Assert.AreEqual(new Point(5, 17), shape[3].Position);
+        }
+
     }
 }

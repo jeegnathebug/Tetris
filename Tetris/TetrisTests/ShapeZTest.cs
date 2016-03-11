@@ -62,7 +62,7 @@ namespace TetrisTests
             Assert.AreEqual(4, shape[0].Position.X);
             Assert.AreEqual(1, shape[0].Position.Y);
             Assert.AreEqual(5, shape[1].Position.X);
-            Assert.AreEqual(2, shape[1].Position.Y);
+            Assert.AreEqual(1, shape[1].Position.Y);
             Assert.AreEqual(5, shape[2].Position.X);
             Assert.AreEqual(2, shape[2].Position.Y);
             Assert.AreEqual(6, shape[3].Position.X);
@@ -81,13 +81,13 @@ namespace TetrisTests
             shape.Rotate();
 
             //assert
-            Assert.AreEqual(4, shape[0].Position.X);
+            Assert.AreEqual(5, shape[0].Position.X);
             Assert.AreEqual(2, shape[0].Position.Y);
-            Assert.AreEqual(4, shape[1].Position.X);
+            Assert.AreEqual(5, shape[1].Position.X);
             Assert.AreEqual(1, shape[1].Position.Y);
-            Assert.AreEqual(5, shape[2].Position.X);
+            Assert.AreEqual(6, shape[2].Position.X);
             Assert.AreEqual(1, shape[2].Position.Y);
-            Assert.AreEqual(5, shape[3].Position.X);
+            Assert.AreEqual(6, shape[3].Position.X);
             Assert.AreEqual(0, shape[3].Position.Y);
         }
 
@@ -107,7 +107,7 @@ namespace TetrisTests
             Assert.AreEqual(4, shape[0].Position.X);
             Assert.AreEqual(1, shape[0].Position.Y);
             Assert.AreEqual(5, shape[1].Position.X);
-            Assert.AreEqual(2, shape[1].Position.Y);
+            Assert.AreEqual(1, shape[1].Position.Y);
             Assert.AreEqual(5, shape[2].Position.X);
             Assert.AreEqual(2, shape[2].Position.Y);
             Assert.AreEqual(6, shape[3].Position.X);
