@@ -51,21 +51,9 @@ namespace TetrisLibrary
         /// </summary>
         public void Drop()
         {
-            bool canMove = true;
-
-            while (canMove)
+            while (TryMoveDown())
             {
-                // Check if each block can move down
-                for (int i = 0; i < blocks.Length; i++)
-                {
-                    canMove &= blocks[i].TryMoveDown();
-                }
-
-                // If they can, move down
-                if (canMove)
-                {
-                    MoveDown();
-                }
+                MoveDown();
             }
 
             // Fire event
@@ -134,13 +122,8 @@ namespace TetrisLibrary
         /// </summary>
         public void MoveDown()
         {
-            bool canMove = true;
-
-            // Checks whether or not each block can move
-            foreach (Block b in blocks)
-            {
-                canMove &= b.TryMoveDown();
-            }
+            // Check if each block can move down
+            bool canMove = TryMoveDown();
 
             // Moves each block
             if (canMove)
@@ -201,7 +184,7 @@ namespace TetrisLibrary
         /// <summary>
         /// Resets this instance.
         /// </summary>
-        public void Reset()
+        public virtual void Reset()
         {
             // Reset rotation
             currentRotation = 0;
@@ -211,6 +194,18 @@ namespace TetrisLibrary
         }
 
         protected abstract void setBlockPositions();
+
+        private bool TryMoveDown()
+        {
+            bool canMove = true;
+
+            for (int i = 0; i < blocks.Length; i++)
+            {
+                canMove &= blocks[i].TryMoveDown();
+            }
+
+            return canMove;
+        }
         #endregion
     }
 }

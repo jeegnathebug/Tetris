@@ -140,6 +140,71 @@ namespace TetrisTests
         }
 
         [TestMethod]
+        public void DropsLines2()
+        {
+            //arrange
+            Board board = new Board();
+            IShapeFactory shapeFactory = board.ShapeFactory;
+            IShape shape;
+
+            //act
+            board[0, 19] = Color.Red;
+            board[1, 19] = Color.Red;
+            board[2, 19] = Color.Red;
+            board[3, 19] = Color.Red;
+            board[6, 19] = Color.Red;
+            board[7, 19] = Color.Red;
+            board[8, 19] = Color.Red;
+            board[9, 19] = Color.Red;
+
+            board[0, 18] = Color.Red;
+            board[2, 18] = Color.Red;
+            board[3, 18] = Color.Red;
+            board[7, 18] = Color.Red;
+            board[8, 18] = Color.Red;
+
+            board[0, 17] = Color.Red;
+            board[1, 17] = Color.Red;
+            board[2, 17] = Color.Red;
+            board[3, 17] = Color.Red;
+            board[6, 17] = Color.Red;
+            board[7, 17] = Color.Red;
+            board[8, 17] = Color.Red;
+            board[9, 17] = Color.Red;
+
+            board[0, 16] = Color.Red;
+            board[2, 16] = Color.Red;
+            board[3, 16] = Color.Red;
+            board[7, 16] = Color.Red;
+            board[8, 16] = Color.Red;
+
+            shapeFactory.DeployShape(0);
+            shape = board.Shape;
+            shape.MoveDown();
+            shape.Rotate();
+            shape.MoveLeft();
+            shape.Drop();
+
+            shapeFactory.DeployShape(0);
+            shape = board.Shape;
+            shape.MoveDown();
+            shape.Rotate();
+            shape.Drop();
+
+            //assert
+            Assert.IsTrue(board[0, 19] == Color.Red);
+            Assert.IsTrue(board[0, 18] == Color.Red);
+            Assert.IsTrue(board[2, 19] == Color.Red);
+            Assert.IsTrue(board[2, 18] == Color.Red);
+            Assert.IsTrue(board[3, 19] == Color.Red);
+            Assert.IsTrue(board[3, 18] == Color.Red);
+            Assert.IsTrue(board[7, 19] == Color.Red);
+            Assert.IsTrue(board[7, 18] == Color.Red);
+            Assert.IsTrue(board[8, 19] == Color.Red);
+            Assert.IsTrue(board[8, 18] == Color.Red);
+        }
+
+        [TestMethod]
         public void OnLinesCleared()
         {
             //arrange

@@ -27,9 +27,21 @@ namespace TetrisLibrary
             length = blocks.Length;
         }
 
-		/// <summary>
-		/// Sets the blocks' positions.
-		/// </summary>
+        /// <summary>
+        /// Resets this instance.
+        /// </summary>
+        public override void Reset()
+        {
+            // Reset rotation
+            currentRotation = -1;
+
+            // Reset block locations
+            setBlockPositions();
+        }
+
+        /// <summary>
+        /// Sets the blocks' positions.
+        /// </summary>
         protected override void setBlockPositions()
         {
             blocks[0].Position = new Point(4, 0);

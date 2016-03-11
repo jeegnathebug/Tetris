@@ -25,9 +25,11 @@ namespace TetrisLibrary
         public Color this[int i, int j]
         {
             get { return board[i, j]; }
+            // HACK: FOR TESTING
+            set { board[i, j] = value; }
         }
 
-        // FOR TESTING
+        // HACK: FOR TESTING
         public IShapeFactory ShapeFactory
         {
             get { return shapeFactory; }
@@ -158,10 +160,13 @@ namespace TetrisLibrary
         /// <param name="row">The line to drop</param>
         private void dropLines(int j)
         {
-            for (int i = 0; i < board.GetLength(0); i++)
+            if (j != 0)
             {
-                board[i, j - 1] = board[i, j];
-                board[i, j].Equals(Color.Black);
+                for (int i = 0; i < board.GetLength(0); i++)
+                {
+                    board[i, j - 1] = board[i, j];
+                    board[i, j].Equals(Color.Black);
+                }
             }
         }
 
