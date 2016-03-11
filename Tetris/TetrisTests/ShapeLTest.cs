@@ -118,6 +118,57 @@ namespace TetrisTests
         }
 
         [TestMethod]
+        public void TestMethodShapeL_Rotate3()
+        {
+            //arrange
+            IBoard board = new Board();
+            ShapeL shape = new ShapeL(board);
+
+            shape.MoveDown();
+            shape.Rotate();
+            shape.Rotate();
+
+            //act
+            shape.Rotate();
+
+            //assert
+            Assert.AreEqual(4, shape[0].Position.X);
+            Assert.AreEqual(0, shape[0].Position.Y);
+            Assert.AreEqual(5, shape[1].Position.X);
+            Assert.AreEqual(0, shape[1].Position.Y);
+            Assert.AreEqual(5, shape[2].Position.X);
+            Assert.AreEqual(1, shape[2].Position.Y);
+            Assert.AreEqual(5, shape[3].Position.X);
+            Assert.AreEqual(2, shape[3].Position.Y);
+        }
+
+        [TestMethod]
+        public void TestMethodShapeL_Rotate4()
+        {
+            //arrange
+            IBoard board = new Board();
+            ShapeL shape = new ShapeL(board);
+
+            shape.MoveDown();
+            shape.Rotate();
+            shape.Rotate();
+            shape.Rotate();
+
+            //act
+            shape.Rotate();
+
+            //assert
+            Assert.AreEqual(4, shape[0].Position.X);
+            Assert.AreEqual(2, shape[0].Position.Y);
+            Assert.AreEqual(4, shape[1].Position.X);
+            Assert.AreEqual(1, shape[1].Position.Y);
+            Assert.AreEqual(5, shape[2].Position.X);
+            Assert.AreEqual(1, shape[2].Position.Y);
+            Assert.AreEqual(6, shape[3].Position.X);
+            Assert.AreEqual(1, shape[3].Position.Y);
+        }
+
+        [TestMethod]
         public void TestMethodShapeL_Drop()
         {
             //arrange
