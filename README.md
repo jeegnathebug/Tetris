@@ -32,7 +32,8 @@ C#
 ###Version 2.0
 (+) Logic Completed  
 (+) Unit Testing Structure  
-(+) Some Unit Testing Completed (Some Shapes, etc)
+(+) Required unit testing complete
 
 ###Version 3.0
-(+) Add a Monogame UI
+(+) Add a MonoGame Project
+(+) Add a Tetris icon
