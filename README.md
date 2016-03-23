@@ -35,5 +35,5 @@ C#
 (+) Required unit testing complete
 
 ###Version 3.0
-(+) Add a MonoGame Project
+(+) Add a MonoGame Project  
 (+) Add a Tetris icon
