@@ -10,7 +10,6 @@ namespace TetrisLibrary
 
         private int length;
         private IBoard board;
-        // The shape I'm pretending to be
         private IShape current;
 
         public event JoinPileHandler JoinPile;
@@ -154,7 +153,6 @@ namespace TetrisLibrary
             // Length
             length = current.Length;
 		}
-
         #endregion
     }
 }

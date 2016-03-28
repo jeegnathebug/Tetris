@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using TetrisLibrary;
 
 namespace TetrisGame
 {
@@ -9,13 +10,28 @@ namespace TetrisGame
     /// </summary>
     public class Game1 : Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        private GraphicsDeviceManager graphics;
+        private SpriteBatch spriteBatch;
+        private BoardSprite boardSprite;
+        private ShapeSprite shapeSprite;
+        private ScoreSprite scoreSprite;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+
+            // Instantiate Tetris logic
+            IBoard board = new Board();
+            Score score = new Score(board);
+
+            boardSprite = new BoardSprite(this, board);
+            shapeSprite = new ShapeSprite(this, board, score);
+            scoreSprite = new ScoreSprite(this, score);
+
             Content.RootDirectory = "Content";
+
+            // Add to board's GameOver event
+            board.GameOver += gameOver;
         }
 
         /// <summary>
@@ -78,6 +94,14 @@ namespace TetrisGame
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
+        }
+
+        /// <summary>
+        /// Ends the game
+        /// </summary>
+        private void gameOver()
+        {
+
         }
     }
 }
