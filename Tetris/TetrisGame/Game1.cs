@@ -34,17 +34,24 @@ namespace TetrisGame
             // Instantiate Tetris logic
             IBoard board = new Board();
             Score score = new Score(board);
-            
+
+            // Add to board's GameOver event
+            board.GameOver += gameOver;
+
+            // Instantiate sprite classes
             boardSprite = new BoardSprite(this, board);
             shapeSprite = new ShapeSprite(this, board, score);
             scoreSprite = new ScoreSprite(this, score);
 
+            // Add sprite classes
             Components.Add(boardSprite);
             Components.Add(shapeSprite);
             Components.Add(scoreSprite);
 
-            // Add to board's GameOver event
-            board.GameOver += gameOver;
+            // Set height and width of screen
+            graphics.PreferredBackBufferHeight = 600;
+            graphics.PreferredBackBufferWidth = 500;
+            graphics.ApplyChanges();
 
             base.Initialize();
         }

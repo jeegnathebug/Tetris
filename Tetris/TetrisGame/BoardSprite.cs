@@ -49,7 +49,23 @@ namespace TetrisGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
+            int size = 25;
 
+            spriteBatch.Begin();
+            for (int i = 0; i < board.GetLength(0); i++)
+            {
+                for (int j = 0; j < board.GetLength(1); j++)
+                {
+                    System.Drawing.Color c = board[i, j];
+                    if (c.Equals(System.Drawing.Color.Black))
+                    {
+                        c = System.Drawing.Color.DarkSlateGray;
+                    }
+                    spriteBatch.Draw(filledBlock, new Rectangle(200 + i, 50 + j, size, size), new Color(c.R, c.G, c.B));
+                }
+            }
+
+            spriteBatch.End();
         }
 
         /// <summary>
@@ -58,8 +74,16 @@ namespace TetrisGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Draw(GameTime gameTime)
         {
+            int size = 25;
+
             spriteBatch.Begin();
-            spriteBatch.Draw(emptyBlock, new Rectangle(100, 100, 200, 400), Color.DarkSlateGray);
+            for (int i = 0; i < board.GetLength(0) * size; i += size)
+            {
+                for (int j = 0; j < board.GetLength(1) * size; j += size)
+                {
+                    spriteBatch.Draw(emptyBlock, new Rectangle(200 + i, 50 + j, size, size), Color.DarkSlateGray);
+                }
+            }
             spriteBatch.End();
         }
     }

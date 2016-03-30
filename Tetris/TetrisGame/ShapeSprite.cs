@@ -41,7 +41,7 @@ namespace TetrisGame
         public override void Initialize()
         {
             oldState = Keyboard.GetState();
-            threshold = 30;
+            threshold = 30; // TODO: WAT?
 
             base.Initialize();
         }
@@ -66,24 +66,16 @@ namespace TetrisGame
         {
             checkInput();
 
-            // use counterMoveDown and number determined by level
-            if (gameTime.ElapsedGameTime.Milliseconds == counterMoveDown)
+            int dropDelay = (11 - score.Level) * 5;
+            if (counterMoveDown == dropDelay)
             {
                 shape.Drop();
+                counterMoveDown = 0;
             }
             else
             {
-                counterMoveDown--;
+                counterMoveDown++;
             }
-            // Note: this method is called every 1/60th of a second
-            // dropDelay = (11 - level) * 0.05 seconds
-            //In other words, at level 1, the shape will drop at every ½
-            //second, increasing at every level by 0.05 seconds, or 1/20
-            //of a second.Since the maximum level is 10, the quickest that
-            //the shape will move down is every 1 / 20 of a second.The game
-            //loop iterates at every 1 / 60 of a second, so you will need to
-            //use a threshold in your Update method to throttle how often you
-            //ask the shape to move down.
         }
 
         /// <summary>
@@ -92,11 +84,12 @@ namespace TetrisGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Draw(GameTime gameTime)
         {
+            int size = 25;
             spriteBatch.Begin();
             for (int i = 0; i < shape.Length; i++)
             {
                 System.Drawing.Color c = shape[i].Color;
-                spriteBatch.Draw(filledBlock, new Vector2(shape[i].Position.X, shape[i].Position.Y), new Color(c.R, c.G, c.B));
+                spriteBatch.Draw(filledBlock, new Vector2(200 + shape[i].Position.X * size, 50 + shape[i].Position.Y * size), new Color(c.R, c.G, c.B));
             }
             spriteBatch.End();
         }
