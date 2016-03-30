@@ -20,18 +20,7 @@ namespace TetrisGame
         {
             graphics = new GraphicsDeviceManager(this);
 
-            // Instantiate Tetris logic
-            IBoard board = new Board();
-            Score score = new Score(board);
-
-            boardSprite = new BoardSprite(this, board);
-            shapeSprite = new ShapeSprite(this, board, score);
-            scoreSprite = new ScoreSprite(this, score);
-
             Content.RootDirectory = "Content";
-
-            // Add to board's GameOver event
-            board.GameOver += gameOver;
         }
 
         /// <summary>
@@ -42,7 +31,20 @@ namespace TetrisGame
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            // Instantiate Tetris logic
+            IBoard board = new Board();
+            Score score = new Score(board);
+            
+            boardSprite = new BoardSprite(this, board);
+            shapeSprite = new ShapeSprite(this, board, score);
+            scoreSprite = new ScoreSprite(this, score);
+
+            Components.Add(boardSprite);
+            Components.Add(shapeSprite);
+            Components.Add(scoreSprite);
+
+            // Add to board's GameOver event
+            board.GameOver += gameOver;
 
             base.Initialize();
         }
@@ -60,15 +62,6 @@ namespace TetrisGame
         }
 
         /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// game-specific content.
-        /// </summary>
-        protected override void UnloadContent()
-        {
-            // TODO: Unload any non ContentManager content here
-        }
-
-        /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
         /// </summary>
@@ -77,8 +70,6 @@ namespace TetrisGame
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
-            // TODO: Add your update logic here
 
             base.Update(gameTime);
         }
@@ -89,9 +80,7 @@ namespace TetrisGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            // TODO: Add your drawing code here
+            GraphicsDevice.Clear(Color.Black);
 
             base.Draw(gameTime);
         }
@@ -101,7 +90,7 @@ namespace TetrisGame
         /// </summary>
         private void gameOver()
         {
-
+            Components.Remove(shapeSprite);
         }
     }
 }

@@ -4,7 +4,7 @@ using TetrisLibrary;
 
 namespace TetrisGame
 {
-    public class BoardSprite
+    public class BoardSprite : DrawableGameComponent
     {
         private IBoard board;
         private Game game;
@@ -13,7 +13,7 @@ namespace TetrisGame
         private Texture2D emptyBlock;
         private Texture2D filledBlock;
 
-        public BoardSprite(Game game, IBoard board)
+        public BoardSprite(Game game, IBoard board) : base(game)
         {
             this.game = game;
             this.board = board;
@@ -25,17 +25,21 @@ namespace TetrisGame
         /// related content.  Calling base.Initialize will enumerate through any components
         /// and initialize them as well.
         /// </summary>
-        public void Initialize()
+        public override void Initialize()
         {
+            base.Initialize();
         }
 
         /// <summary>
         /// LoadContent will be called once per game and is the place to load
         /// all of your content.
         /// </summary>
-        protected void LoadContent()
+        protected override void LoadContent()
         {
-
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+            filledBlock = game.Content.Load<Texture2D>("FilledBlock");
+            emptyBlock = game.Content.Load<Texture2D>("EmptyBlock");
+            base.LoadContent();
         }
 
         /// <summary>
@@ -43,18 +47,20 @@ namespace TetrisGame
         /// checking for collisions, gathering input, and playing audio.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
-            
+
         }
 
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        public void Draw(GameTime gameTime)
+        public override void Draw(GameTime gameTime)
         {
-
+            spriteBatch.Begin();
+            spriteBatch.Draw(emptyBlock, new Rectangle(100, 100, 200, 400), Color.DarkSlateGray);
+            spriteBatch.End();
         }
     }
 }
