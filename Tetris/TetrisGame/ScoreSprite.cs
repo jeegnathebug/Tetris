@@ -13,6 +13,9 @@ namespace TetrisGame
 
         private SpriteFont font;
 
+        private bool isGameOver = false;
+        string time = "00:00";
+
         public ScoreSprite(Game game, Score score) : base(game)
         {
             this.game = game;
@@ -37,14 +40,26 @@ namespace TetrisGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Draw(GameTime gameTime)
         {
-            int minutes = gameTime.TotalGameTime.Minutes;
-            int seconds = gameTime.TotalGameTime.Seconds;
-            string time = (minutes < 10 ? "0" + minutes : "" + minutes) + ":" + (seconds < 10 ? "0" + seconds : "" + seconds);
+            // Stop updating time if game is over
+            if (!isGameOver)
+            {
+                int minutes = gameTime.TotalGameTime.Minutes;
+                int seconds = gameTime.TotalGameTime.Seconds;
+                time = (minutes < 10 ? "0" + minutes : "" + minutes) + ":" + (seconds < 10 ? "0" + seconds : "" + seconds);
+            }
             spriteBatch.Begin();
             spriteBatch.DrawString(font, "Score: " + score.score, new Vector2(5, 5), Color.White);
             spriteBatch.DrawString(font, "Level: " + score.Level, new Vector2(5, 30), Color.White);
             spriteBatch.DrawString(font, "Time: " + time, new Vector2(5, 100), Color.White);
             spriteBatch.End();
+        }
+
+        /// <summary>
+        /// Tells ScoreSprite the game has ended
+        /// </summary>
+        public void endGame()
+        {
+            isGameOver = true;
         }
     }
 }

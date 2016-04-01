@@ -10,14 +10,14 @@ namespace TetrisGame
         private IShape shape;
         private Score score;
 
-        // to move the shape down
+        // when to move the shape down
         private int counterMoveDown;
 
         // the keyboard's last pressed key
         private KeyboardState oldState;
         // the time elapsed of the key press
         private int counterInput;
-        //
+        // the time the key should be held to be considered a new key press
         private int threshold;
 
         private Game game;
@@ -41,7 +41,7 @@ namespace TetrisGame
         public override void Initialize()
         {
             oldState = Keyboard.GetState();
-            threshold = 30; // TODO: WAT?
+            threshold = 10;
 
             base.Initialize();
         }
