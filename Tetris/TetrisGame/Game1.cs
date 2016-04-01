@@ -101,7 +101,6 @@ namespace TetrisGame
         {
             Components.Remove(shapeSprite);
             scoreSprite.endGame();
-            Exit();
         }
     }
 }

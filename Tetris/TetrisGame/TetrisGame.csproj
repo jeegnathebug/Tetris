@@ -41,6 +41,10 @@
   <PropertyGroup>
     <ApplicationIcon>tetris.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="BoardSprite.cs" />
     <Compile Include="Game1.cs" />
