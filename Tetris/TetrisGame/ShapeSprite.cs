@@ -69,7 +69,7 @@ namespace TetrisGame
             int dropDelay = (11 - score.Level) * 5;
             if (counterMoveDown == dropDelay)
             {
-                shape.Drop();
+                shape.MoveDown();
                 counterMoveDown = 0;
             }
             else
@@ -100,27 +100,72 @@ namespace TetrisGame
 
             // if right key is pressed
             if (newState.IsKeyDown(Keys.Right))
-            {
-                shape.MoveRight();
+            { // If not down last update, key has just been pressed.
+                if (!oldState.IsKeyDown(Keys.Right))
+                {
+                    shape.MoveRight();
+                    counterInput = 0; //reset counter with every new keystroke
+                }
+                else {
+                    counterInput++;
+                    if (counterInput > threshold)
+                    {
+                        shape.MoveRight();
+                    }
+                }
             }
 
             // if left key is pressed
             if (newState.IsKeyDown(Keys.Left))
-            {
-                shape.MoveLeft();
+            { // If not down last update, key has just been pressed.
+                if (!oldState.IsKeyDown(Keys.Left))
+                {
+                    shape.MoveLeft();
+                    counterInput = 0; //reset counter with every new keystroke
+                }
+                else {
+                    counterInput++;
+                    if (counterInput > threshold)
+                    {
+                        shape.MoveLeft();
+                    }
+                }
             }
 
             // if down key is pressed
             if (newState.IsKeyDown(Keys.Down))
-            {
-                shape.Drop();
+            { // If not down last update, key has just been pressed.
+                if (!oldState.IsKeyDown(Keys.Down))
+                {
+                    shape.Drop();
+                    counterInput = 0; //reset counter with every new keystroke
+                }
+                else {
+                    counterInput++;
+                    if (counterInput > threshold)
+                    {
+                        shape.Drop();
+                    }
+                }
             }
 
-            // if right shift is pressed
             if (newState.IsKeyDown(Keys.RightShift))
-            {
-                shape.Rotate();
+            { // If not down last update, key has just been pressed.
+                if (!oldState.IsKeyDown(Keys.RightShift))
+                {
+                    shape.Rotate();
+                    counterInput = 0; //reset counter with every new keystroke
+                }
+                else {
+                    counterInput++;
+                    if (counterInput > threshold)
+                    {
+                        shape.Rotate();
+                    }
+                }
             }
+
+            oldState = newState;
         }
     }
 }

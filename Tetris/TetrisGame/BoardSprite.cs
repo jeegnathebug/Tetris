@@ -65,13 +65,17 @@ namespace TetrisGame
             {
                 for (int j = 0; j < board.GetLength(1) * size; j += size)
                 {
+                    // Filled block
                     System.Drawing.Color c = board[i/size, j/size];
                     Texture2D block = filledBlock;
+
+                    // Empty block
                     if (c.Equals(System.Drawing.Color.Black))
                     {
                         c = System.Drawing.Color.DarkSlateGray;
                         block = emptyBlock;
                     }
+
                     spriteBatch.Draw(block, new Rectangle(200 + i, 50 + j, size, size), new Color(c.R, c.G, c.B));
                 }
             }
