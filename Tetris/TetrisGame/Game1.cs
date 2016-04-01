@@ -126,7 +126,7 @@ namespace TetrisGame
             prev_mpressed = mpressed;
             mpressed = mouse_state.LeftButton == ButtonState.Pressed;
 
-            update_buttons();
+            UpdateButtons();
 
             base.Update(gameTime);
         }
@@ -164,9 +164,9 @@ namespace TetrisGame
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        Boolean hit_image_alpha(Rectangle rect, Texture2D tex, int x, int y)
+        Boolean HitImage(Rectangle rect, Texture2D tex, int x, int y)
         {
-            return hit_image_alpha(0, 0, tex, tex.Width * (x - rect.X) /
+            return HitImage(0, 0, tex, tex.Width * (x - rect.X) /
                 rect.Width, tex.Height * (y - rect.Y) / rect.Height);
         }
 
@@ -179,9 +179,9 @@ namespace TetrisGame
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        Boolean hit_image_alpha(float tx, float ty, Texture2D tex, int x, int y)
+        Boolean HitImage(float tx, float ty, Texture2D tex, int x, int y)
         {
-            if (hit_image(tx, ty, tex, x, y))
+            if (ValidateButtonXY(tx, ty, tex, x, y))
             {
                 uint[] data = new uint[tex.Width * tex.Height];
                 tex.GetData<uint>(data);
@@ -205,7 +205,7 @@ namespace TetrisGame
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        Boolean hit_image(float tx, float ty, Texture2D tex, int x, int y)
+        Boolean ValidateButtonXY(float tx, float ty, Texture2D tex, int x, int y)
         {
             return (x >= tx &&
                 x <= tx + tex.Width &&
@@ -216,9 +216,9 @@ namespace TetrisGame
         /// <summary>
         /// Determine state and color of button
         /// </summary>
-        void update_buttons()
+        void UpdateButtons()
         {
-            if (hit_image_alpha(button_rectangle, button_texture[0], mx, my))
+            if (HitImage(button_rectangle, button_texture[0], mx, my))
             {
                 button_timer = 0.0;
                 if (mpressed)
@@ -238,7 +238,7 @@ namespace TetrisGame
                 } else
                 {
                    button_state = BState.HOVER;
-                   button_color = Color.LightBlue; //testing commit
+                   button_color = Color.LightBlue; 
                 }
              } else
              {
@@ -253,14 +253,14 @@ namespace TetrisGame
              }
              if (button_state == BState.JUST_RELEASED)
              {
-               take_action_on_button();
+                RestartGame();
              }
         }
 
        /// <summary>
        /// Restarts the game
        /// </summary> 
-        public void take_action_on_button()
+        public void RestartGame()
         {
             background_color = Color.Green;
         }
