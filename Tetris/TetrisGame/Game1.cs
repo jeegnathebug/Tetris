@@ -19,8 +19,10 @@ namespace TetrisGame
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
-
             Content.RootDirectory = "Content";
+
+            graphics.PreferredBackBufferHeight = 400;
+            graphics.PreferredBackBufferWidth = 300;
         }
 
         /// <summary>
@@ -98,6 +100,7 @@ namespace TetrisGame
         private void gameOver()
         {
             Components.Remove(shapeSprite);
+            this.Exit();
         }
     }
 }
