@@ -41,7 +41,7 @@ namespace TetrisGame
         public override void Initialize()
         {
             oldState = Keyboard.GetState();
-            threshold = 30; // TODO: WAT?
+            threshold = 10; // TODO: WAT?
 
             base.Initialize();
         }
