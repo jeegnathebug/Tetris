@@ -89,7 +89,7 @@ namespace TetrisGame
             for (int i = 0; i < shape.Length; i++)
             {
                 System.Drawing.Color c = shape[i].Color;
-                spriteBatch.Draw(filledBlock, new Vector2(200 + shape[i].Position.X * size, 50 + shape[i].Position.Y * size), new Color(c.R, c.G, c.B));
+                spriteBatch.Draw(filledBlock, new Vector2(203 + shape[i].Position.X * size, 53 + shape[i].Position.Y * size), new Color(c.R, c.G, c.B));
             }
             spriteBatch.End();
         }
