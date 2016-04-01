@@ -126,24 +126,30 @@ namespace TetrisLibrary
         {
             int num = 0;
 
-            // Go through each row
-            for (int j = 0; j < board.GetLength(1); j++)
+            // Go through each row from bottom up
+            for (int j = board.GetLength(1) - 1; j >= 0; j--)
             {
-                bool cleared = true;
+                bool trueClear = true;
+                bool drop = true;
 
-                // Check each block
+                // Check each block from left to right
                 for (int i = 0; i < GetLength(0); i++)
                 {
-                    cleared &= !board[i, j].Equals(Color.Black);
+                    trueClear &= !board[i, j].Equals(Color.Black);
+                    drop &= board[i, j].Equals(Color.DarkSlateGray);
                 }
 
                 // If the line needs to be cleared
-                if (cleared)
+                if (trueClear)
                 {
+                    // bottommost line to be dropped
                     dropLines(j);
 
-                    // Increment lines cleared
-                    num++;
+                    if (!drop)
+                    {
+                        // Increment lines cleared
+                        num++;
+                    }
                 }
             }
 
@@ -157,15 +163,22 @@ namespace TetrisLibrary
         /// <summary>
         /// Drops the given line until it joins the pile
         /// </summary>
-        /// <param name="row">The line to drop</param>
+        /// <param name="j">The line to drop</param>
         private void dropLines(int j)
         {
             if (j != 0)
             {
                 for (int i = 0; i < board.GetLength(0); i++)
                 {
-                    board[i, j - 1] = board[i, j];
-                    board[i, j].Equals(Color.Black);
+                    board[i, j] = board[i, j - 1];
+                    board[i, j - 1] = Color.DarkSlateGray;
+                }
+            }
+            else
+            {
+                for (int i = 0; i < board.GetLength(0); i++)
+                {
+                    board[i, j] = Color.Black;
                 }
             }
         }
