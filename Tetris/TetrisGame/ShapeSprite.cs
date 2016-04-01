@@ -111,9 +111,15 @@ namespace TetrisGame
             }
 
             // if down key is pressed
-            if (newState.IsKeyDown(Keys.Right))
+            if (newState.IsKeyDown(Keys.Down))
             {
                 shape.Drop();
+            }
+
+            // if right shift is pressed
+            if (newState.IsKeyDown(Keys.RightShift))
+            {
+                shape.Rotate();
             }
         }
     }

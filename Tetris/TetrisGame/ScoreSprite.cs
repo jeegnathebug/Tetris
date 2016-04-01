@@ -30,20 +30,6 @@ namespace TetrisGame
 
             base.LoadContent();
         }
-        
-        /// <summary>
-        /// Allows the game to run logic such as updating the world,
-        /// checking for collisions, gathering input, and playing audio.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        public override void Update(GameTime gameTime)
-        {
-            // TODO Update time elapsed
-            //spriteBatch.Begin();
-            //spriteBatch.DrawString(font, "Time: " + gameTime.ElapsedGameTime, new Vector2(5, 100), Color.White);
-            //spriteBatch.End();
-            base.Update(gameTime);
-        }
 
         /// <summary>
         /// This is called when the game should draw itself.
