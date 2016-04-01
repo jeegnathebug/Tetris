@@ -100,7 +100,8 @@ namespace TetrisGame
         private void gameOver()
         {
             Components.Remove(shapeSprite);
-            this.Exit();
+            scoreSprite.endGame();
+            Exit();
         }
     }
 }
