@@ -49,7 +49,7 @@ namespace TetrisGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
-            
+            base.Update(gameTime);
         }
 
         /// <summary>
@@ -61,6 +61,7 @@ namespace TetrisGame
             int size = 25;
 
             spriteBatch.Begin();
+
             for (int i = 0; i < board.GetLength(0) * size; i += size)
             {
                 for (int j = 0; j < board.GetLength(1) * size; j += size)
@@ -80,6 +81,7 @@ namespace TetrisGame
                 }
             }
             spriteBatch.End();
+            base.Draw(gameTime);
         }
     }
 }
