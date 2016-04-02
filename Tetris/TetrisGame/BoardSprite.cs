@@ -20,17 +20,6 @@ namespace TetrisGame
         }
 
         /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
-        /// </summary>
-        public override void Initialize()
-        {
-            base.Initialize();
-        }
-
-        /// <summary>
         /// LoadContent will be called once per game and is the place to load
         /// all of your content.
         /// </summary>
@@ -40,16 +29,6 @@ namespace TetrisGame
             filledBlock = game.Content.Load<Texture2D>("FilledBlock");
             emptyBlock = game.Content.Load<Texture2D>("EmptyBlock");
             base.LoadContent();
-        }
-
-        /// <summary>
-        /// Allows the game to run logic such as updating the world,
-        /// checking for collisions, gathering input, and playing audio.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        public override void Update(GameTime gameTime)
-        {
-            base.Update(gameTime);
         }
 
         /// <summary>
