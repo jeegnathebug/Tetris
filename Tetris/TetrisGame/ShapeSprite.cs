@@ -25,10 +25,13 @@ namespace TetrisGame
 
         private Texture2D filledBlock;
 
-        public ShapeSprite(Game game, IBoard board, Score score) : base(game)
+        private int size;
+
+        public ShapeSprite(Game game, IBoard board, Score score, int size) : base(game)
         {
             this.game = game;
             this.score = score;
+            this.size = size;
             shape = board.Shape;
         }
 
@@ -66,7 +69,8 @@ namespace TetrisGame
         {
             checkInput();
 
-            int dropDelay = (11 - score.Level) * 5;
+            // After level 5, it's literally unplayable
+            int dropDelay = (11 - score.Level) * 3;
 
             // Reset counter if dropDelay changes while counter has not reset
             if (counterMoveDown > dropDelay)
@@ -91,7 +95,6 @@ namespace TetrisGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Draw(GameTime gameTime)
         {
-            int size = 25;
             spriteBatch.Begin();
             for (int i = 0; i < shape.Length; i++)
             {

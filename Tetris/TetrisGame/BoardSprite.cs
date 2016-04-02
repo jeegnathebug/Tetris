@@ -13,10 +13,13 @@ namespace TetrisGame
         private Texture2D emptyBlock;
         private Texture2D filledBlock;
 
-        public BoardSprite(Game game, IBoard board) : base(game)
+        private int size;
+
+        public BoardSprite(Game game, IBoard board, int size) : base(game)
         {
             this.game = game;
             this.board = board;
+            this.size = size;
         }
 
         /// <summary>
@@ -37,8 +40,6 @@ namespace TetrisGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Draw(GameTime gameTime)
         {
-            int size = 25;
-
             spriteBatch.Begin();
 
             for (int i = 0; i < board.GetLength(0) * size; i += size)

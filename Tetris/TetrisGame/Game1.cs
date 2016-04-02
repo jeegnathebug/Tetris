@@ -66,8 +66,9 @@ namespace TetrisGame
             board.GameOver += gameOver;
 
             // Instantiate sprite classes
-            boardSprite = new BoardSprite(this, board);
-            shapeSprite = new ShapeSprite(this, board, score);
+            int size = 25;
+            boardSprite = new BoardSprite(this, board, size);
+            shapeSprite = new ShapeSprite(this, board, score, size);
             scoreSprite = new ScoreSprite(this, score);
 
             // Add sprite classes
@@ -119,6 +120,10 @@ namespace TetrisGame
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+
+            // Press F5 to restart game. It's like hitting refresh
+            if (Keyboard.GetState().IsKeyDown(Keys.F5))
+                RestartGame();
 
             // get elapsed frame time in seconds
             frame_time = gameTime.ElapsedGameTime.Milliseconds / 1000.0;
