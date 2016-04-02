@@ -149,6 +149,9 @@ namespace TetrisLibrary
                     {
                         // Increment lines cleared
                         num++;
+
+                        // recheck the line
+                        j++;
                     }
                 }
             }
@@ -166,14 +169,20 @@ namespace TetrisLibrary
         /// <param name="j">The line to drop</param>
         private void dropLines(int j)
         {
+            // Not the very top line
             if (j != 0)
             {
                 for (int i = 0; i < board.GetLength(0); i++)
                 {
-                    board[i, j] = board[i, j - 1];
-                    board[i, j - 1] = Color.DarkSlateGray;
+                    // Drop every row above
+                    for (int k = j; k > 0; k--)
+                    {
+                        board[i, k] = board[i, k - 1];
+                        board[i, k - 1] = Color.Black;
+                    }
                 }
             }
+            // The very top line
             else
             {
                 for (int i = 0; i < board.GetLength(0); i++)

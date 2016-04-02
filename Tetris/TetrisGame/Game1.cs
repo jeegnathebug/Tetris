@@ -37,6 +37,8 @@ namespace TetrisGame
         private ShapeSprite shapeSprite;
         private ScoreSprite scoreSprite;
 
+        private SpriteFont font;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -44,6 +46,8 @@ namespace TetrisGame
 
             graphics.PreferredBackBufferHeight = 400;
             graphics.PreferredBackBufferWidth = 300;
+
+            Window.Title = "Tetris";
         }
 
         /// <summary>
@@ -76,6 +80,9 @@ namespace TetrisGame
             graphics.PreferredBackBufferWidth = 500;
             graphics.ApplyChanges();
 
+            // Initialize font
+            font = Content.Load<SpriteFont>("scoreFont");
+
             base.Initialize();
 
             //Create button
@@ -96,14 +103,11 @@ namespace TetrisGame
         /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             //Button
             button_texture[0] =
                 Content.Load<Texture2D>("restart");
-
-            // TODO: use this.Content to load your game content here
         }
 
         /// <summary>
@@ -140,7 +144,11 @@ namespace TetrisGame
             GraphicsDevice.Clear(background_color);
 
             spriteBatch.Begin();
+            // Draw button
             spriteBatch.Draw(button_texture[0], button_rectangle, button_color);
+            // Draw instructions
+            string instructions = "Left arrow:" + Environment.NewLine + "move shape left" + Environment.NewLine + Environment.NewLine + "Right arrow:" + Environment.NewLine + "move shape right" + Environment.NewLine + Environment.NewLine + "Down arrow:" + Environment.NewLine + "drop shape" + Environment.NewLine + Environment.NewLine + "Right shift:" + Environment.NewLine + "rotate shape";
+            spriteBatch.DrawString(font, instructions, new Vector2(5, 300), Color.White);
             spriteBatch.End();
 
             base.Draw(gameTime);
@@ -164,7 +172,7 @@ namespace TetrisGame
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        Boolean HitImage(Rectangle rect, Texture2D tex, int x, int y)
+        bool HitImage(Rectangle rect, Texture2D tex, int x, int y)
         {
             return HitImage(0, 0, tex, tex.Width * (x - rect.X) /
                 rect.Width, tex.Height * (y - rect.Y) / rect.Height);
@@ -179,7 +187,7 @@ namespace TetrisGame
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        Boolean HitImage(float tx, float ty, Texture2D tex, int x, int y)
+        bool HitImage(float tx, float ty, Texture2D tex, int x, int y)
         {
             if (ValidateButtonXY(tx, ty, tex, x, y))
             {
@@ -205,7 +213,7 @@ namespace TetrisGame
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        Boolean ValidateButtonXY(float tx, float ty, Texture2D tex, int x, int y)
+        bool ValidateButtonXY(float tx, float ty, Texture2D tex, int x, int y)
         {
             return (x >= tx &&
                 x <= tx + tex.Width &&
@@ -235,35 +243,39 @@ namespace TetrisGame
                         // button i was just down
                         button_state = BState.JUST_RELEASED;
                     }
-                } else
-                {
-                   button_state = BState.HOVER;
-                   button_color = Color.LightBlue; 
                 }
-             } else
-             {
+                else
+                {
+                    button_state = BState.HOVER;
+                    button_color = Color.LightBlue;
+                }
+            }
+            else
+            {
                 button_state = BState.UP;
                 if (button_timer > 0)
                 {
                     button_timer = button_timer - frame_time;
-                } else
-                {
-                  button_color = Color.White;
                 }
-             }
-             if (button_state == BState.JUST_RELEASED)
-             {
+                else
+                {
+                    button_color = Color.White;
+                }
+            }
+            if (button_state == BState.JUST_RELEASED)
+            {
                 RestartGame();
-             }
+            }
         }
 
-       /// <summary>
-       /// Restarts the game
-       /// </summary> 
+        /// <summary>
+        /// Restarts the game
+        /// </summary> 
         public void RestartGame()
         {
-            background_color = Color.Green;
+            Exit();
+            Game1 game = new Game1();
+            game.Run();
         }
-
     }
 }
