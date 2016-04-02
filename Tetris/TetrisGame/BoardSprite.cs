@@ -56,6 +56,7 @@ namespace TetrisGame
                         block = emptyBlock;
                     }
 
+                    // Draw block
                     spriteBatch.Draw(block, new Rectangle(200 + i, 50 + j, size, size), new Color(c.R, c.G, c.B));
                 }
             }

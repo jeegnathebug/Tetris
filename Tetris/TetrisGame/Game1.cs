@@ -147,7 +147,7 @@ namespace TetrisGame
             // Draw button
             spriteBatch.Draw(button_texture[0], button_rectangle, button_color);
             // Draw instructions
-            string instructions = "Left arrow:" + Environment.NewLine + "move shape left" + Environment.NewLine + Environment.NewLine + "Right arrow:" + Environment.NewLine + "move shape right" + Environment.NewLine + Environment.NewLine + "Down arrow:" + Environment.NewLine + "drop shape" + Environment.NewLine + Environment.NewLine + "Right shift:" + Environment.NewLine + "rotate shape";
+            string instructions = "Left arrow:" + Environment.NewLine + "move shape left" + Environment.NewLine + Environment.NewLine + "Right arrow:" + Environment.NewLine + "move shape right" + Environment.NewLine + Environment.NewLine + "Down arrow:" + Environment.NewLine + "move shape down" + Environment.NewLine + Environment.NewLine + "Right shift:" + Environment.NewLine + "rotate shape";
             spriteBatch.DrawString(font, instructions, new Vector2(5, 300), Color.White);
             spriteBatch.End();
 

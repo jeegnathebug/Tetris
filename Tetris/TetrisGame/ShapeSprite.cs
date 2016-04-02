@@ -76,14 +76,11 @@ namespace TetrisGame
 
             if (counterMoveDown == dropDelay)
             {
-                System.Console.WriteLine("Move Down");
                 shape.MoveDown();
                 counterMoveDown = 0;
             }
             else
             {
-                System.Console.WriteLine("Drop delay: " + dropDelay);
-                System.Console.WriteLine("counterMoveDown: " + counterMoveDown);
                 counterMoveDown++;
             }
         }
@@ -152,7 +149,7 @@ namespace TetrisGame
             {
                 if (!oldState.IsKeyDown(Keys.Down))
                 {
-                    shape.Drop();
+                    shape.MoveDown();
                     counterInput = 0;
                 }
                 else
@@ -160,7 +157,7 @@ namespace TetrisGame
                     counterInput++;
                     if (counterInput > threshold)
                     {
-                        shape.Drop();
+                        shape.MoveDown();
                     }
                 }
             }
