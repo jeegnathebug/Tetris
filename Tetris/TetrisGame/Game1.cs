@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using System;
 using TetrisLibrary;
 
@@ -96,6 +97,11 @@ namespace TetrisGame
             IsMouseVisible = true;
 
             background_color = Color.Black;
+
+            /**Music
+            Song song = Content.Load<Song>("music");
+            MediaPlayer.Play(song);
+            */
         }
 
         /// <summary>
